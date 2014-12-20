@@ -1,0 +1,1295 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sl",
+				"sliceNumber"
+			],
+			[
+				"slice",
+				"sliceNumber"
+			],
+			[
+				"sub",
+				"subImgDataset1"
+			],
+			[
+				"save",
+				"saveDataRaw"
+			],
+			[
+				"imgI",
+				"imgInfoDataset2"
+			],
+			[
+				"img",
+				"imgInfoDataset2"
+			],
+			[
+				"subI",
+				"subImgDataset2"
+			],
+			[
+				"blac",
+				"blackLimit"
+			],
+			[
+				"is",
+				"isBlackImage"
+			],
+			[
+				"black",
+				"blackImage"
+			],
+			[
+				"bla",
+				"blackImage"
+			],
+			[
+				"sim",
+				"simScoreiT1"
+			],
+			[
+				"simSco",
+				"simScoreiT1"
+			],
+			[
+				"si",
+				"simScores"
+			],
+			[
+				"IMGiNF",
+				"imgInfoDataset1"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"id",
+				"id2"
+			],
+			[
+				"simS",
+				"simScoreiT2"
+			],
+			[
+				"subIm",
+				"subImgDataset1"
+			],
+			[
+				"tid",
+				"tid2"
+			],
+			[
+				"per",
+				"perfectMatch"
+			],
+			[
+				"tiw",
+				"tiw2"
+			],
+			[
+				"res",
+				"resWidth"
+			],
+			[
+				"similar",
+				"similarityResult"
+			],
+			[
+				"re",
+				"resHeight"
+			],
+			[
+				"data",
+				"dataset1"
+			],
+			[
+				"get",
+				"getMSSIM"
+			],
+			[
+				"simi",
+				"similarityResult"
+			],
+			[
+				"subImgDa",
+				"subImgDataset2"
+			],
+			[
+				"sli",
+				"sliceNumber"
+			],
+			[
+				"sp",
+				"splitDatasetCPU"
+			],
+			[
+				"gp",
+				"gpuoptimization"
+			],
+			[
+				"g",
+				"gpuOptimized"
+			],
+			[
+				"sr",
+				"sr_ranked"
+			],
+			[
+				"ra",
+				"rank_size"
+			],
+			[
+				"im",
+				"imgInfoDataset2"
+			],
+			[
+				"in",
+				"imgInfoDataset1"
+			],
+			[
+				"chec",
+				"checkWith2STEP"
+			],
+			[
+				"check",
+				"checkWithPSNR"
+			],
+			[
+				"MY_R_PATCH_",
+				"MY_R_PATCH_HANDLE3DDATASETS"
+			],
+			[
+				"MY_LIB_PATCH_",
+				"MY_LIB_PATCH_QUALITYASSESSMENT"
+			],
+			[
+				"MY_LIB_",
+				"MY_LIB_QUALITYASSESSMENT"
+			],
+			[
+				"MY_INCLUDE_",
+				"MY_INCLUDE_HANDLE3DDATASETS"
+			],
+			[
+				"quA",
+				"QualityAssessment"
+			],
+			[
+				"time",
+				"timeVisitante"
+			],
+			[
+				"arq",
+				"arqSaida"
+			],
+			[
+				"me",
+				"mediaDeGols"
+			],
+			[
+				"go",
+				"golsT2"
+			],
+			[
+				"gos",
+				"golsT1"
+			],
+			[
+				"partida",
+				"partidaMaiorDiff"
+			],
+			[
+				"ind",
+				"indMaiorDiff"
+			],
+			[
+				"mai",
+				"maiorDiff"
+			],
+			[
+				"gol",
+				"golsDiff"
+			],
+			[
+				"ar",
+				"arqSaida"
+			],
+			[
+				"ti",
+				"timeMandante"
+			],
+			[
+				"gl",
+				"golsT2"
+			],
+			[
+				"pla",
+				"placarPartida"
+			],
+			[
+				"cont",
+				"cont_x"
+			],
+			[
+				"log",
+				"logFile"
+			],
+			[
+				"l",
+				"l_similarityResults"
+			],
+			[
+				"h",
+				"h_options"
+			],
+			[
+				"dataset",
+				"dataset1"
+			],
+			[
+				"hande",
+				"handleData"
+			],
+			[
+				"prin",
+				"printf	printf …"
+			],
+			[
+				"print",
+				"printVar"
+			],
+			[
+				"slic",
+				"sliceAndDistance"
+			],
+			[
+				"ima",
+				"imgInfoDataset1"
+			],
+			[
+				"datase",
+				"dataset1"
+			],
+			[
+				"spl",
+				"splitDataset"
+			],
+			[
+				"spli",
+				"splitDatasets"
+			],
+			[
+				"Datase",
+				"dataset1"
+			],
+			[
+				"q",
+				"QualityAssessment"
+			],
+			[
+				"Qualit",
+				"QualityAssessment"
+			],
+			[
+				"han",
+				"handleData"
+			],
+			[
+				"load",
+				"loadFile"
+			],
+			[
+				"datas",
+				"datasetRaw"
+			],
+			[
+				"e",
+				"endStack"
+			],
+			[
+				"pri",
+				"printMatriz"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"image",
+				"ImageInfo"
+			],
+			[
+				"c_s",
+				"c_sliceF"
+			],
+			[
+				"va",
+				"val3"
+			],
+			[
+				"val",
+				"val2"
+			],
+			[
+				"sr_ra",
+				"sr_ranked"
+			],
+			[
+				"sr_ranked",
+				"sr_ranked2"
+			],
+			[
+				"GB",
+				"GB_S"
+			],
+			[
+				"offset",
+				"c_offset"
+			],
+			[
+				"out",
+				"outFile"
+			],
+			[
+				"c_kkk",
+				"c_kkk2"
+			],
+			[
+				"c_kk",
+				"c_kkk2"
+			],
+			[
+				"k",
+				"b_k"
+			],
+			[
+				"outp",
+				"output2"
+			],
+			[
+				"sum",
+				"sumTotal"
+			],
+			[
+				"Ra",
+				"RANK_SIZE"
+			],
+			[
+				"op",
+				"distanceToOptimal"
+			],
+			[
+				"dista",
+				"distanceToOptimal"
+			],
+			[
+				"V",
+				"VALOR_MAXIMO-1"
+			],
+			[
+				"count",
+				"countInf"
+			],
+			[
+				"alg",
+				"alg"
+			],
+			[
+				"R",
+				"RANK_SIZE"
+			],
+			[
+				"rs",
+				"rs"
+			],
+			[
+				"ran",
+				"rankSumm"
+			],
+			[
+				"Qn",
+				"QNT_DATASETS"
+			],
+			[
+				"s_s",
+				"s_sliceF"
+			],
+			[
+				"c_",
+				"c_sliceRange"
+			],
+			[
+				"s_",
+				"s_height"
+			],
+			[
+				"l_s",
+				"l_sliceRange"
+			],
+			[
+				"slice_",
+				"slice_I"
+			],
+			[
+				"sr_ran",
+				"sr_ranked2"
+			],
+			[
+				"plane",
+				"planeOrientation"
+			],
+			[
+				"l_",
+				"l_slices"
+			],
+			[
+				"gr",
+				"gremistasSalario"
+			],
+			[
+				"co",
+				"coloradosSalario"
+			],
+			[
+				"outr",
+				"outroclube"
+			],
+			[
+				"entre",
+				"entrevistados"
+			],
+			[
+				"med",
+				"mediaSColorados"
+			],
+			[
+				"col",
+				"colorados"
+			],
+			[
+				"sala",
+				"salarial"
+			],
+			[
+				"gre",
+				"gremistas"
+			],
+			[
+				"cl",
+				"clube"
+			],
+			[
+				"colo",
+				"coloradosSalario"
+			],
+			[
+				"c",
+				"clube"
+			],
+			[
+				"massa",
+				"massaF"
+			],
+			[
+				"li",
+				"limS"
+			],
+			[
+				"lim",
+				"limAux"
+			],
+			[
+				"n_",
+				"n_slice"
+			],
+			[
+				"sr_",
+				"sr_ranked2"
+			],
+			[
+				"f",
+				"for	For Loop"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "logdata.h",
+			"settings":
+			{
+				"buffer_size": 448,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "logdata.cpp",
+			"settings":
+			{
+				"buffer_size": 1021,
+				"line_ending": "Unix",
+				"name": "#include \"logdata.h\""
+			}
+		},
+		{
+			"file": "similarityassessment.h",
+			"settings":
+			{
+				"buffer_size": 1613,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "similarityassessment.cpp",
+			"settings":
+			{
+				"buffer_size": 13347,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "                    imgT **raw_vol1 = dataset1.getDataset(0);\n                    imgT *subImg1 = (imgT*)calloc(PBASE*PBASE,sizeof(imgT*)* PBASE*PBASE);//sub imagens\n                    for(int ii = 0; ii < PBASE; ii++)\n                        for(int jj = 0; jj < PBASE; jj++)                    \n                            subImg1[ijn(ii,jj,PBASE)] = raw_vol1[id][ijn(iw-KERNEL+ii, ih-KERNEL+jj ,imgInfoDataset1.resWidth)]; //armazena sub imagem\n                    \n                    stringstream output;\n                    output << \"subimages/subImgD1_\" << iw << \"x\"<<ih << \"x\"<< id << \".raw\";\n                    string sulfix = output.str();\n                    const char* ss = sulfix.c_str();\n\n                    DATAINFO savePixels;\n                    savePixels.fileName = (char *) malloc(100);\n                    strcpy(savePixels.fileName, ss);\n                    savePixels.resWidth = PBASE;\n                    savePixels.resHeight = PBASE;\n                    /*if(*/dataset1.saveModifiedImage(subImg1, savePixels);//) printf(\"Image saved (%s)!\\n\", savePixels.fileName);\n                    free(savePixels.fileName);\n                    savePixels.fileName=NULL;   ",
+			"settings":
+			{
+				"buffer_size": 1190,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.cpp",
+			"settings":
+			{
+				"buffer_size": 1449,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "handledata.cpp",
+			"settings":
+			{
+				"buffer_size": 998,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "handledata.h",
+			"settings":
+			{
+				"buffer_size": 563,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 808,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "utils.h",
+			"settings":
+			{
+				"buffer_size": 837,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/Xmo_Make.sublime-build",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pac",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 127.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_image_matching/src/main.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Disciplinas/Computacão Gráfica/trab5/ogl_fps_controls.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Disciplinas/Computacão Gráfica/trab5/close2gl.cpp",
+		"/run/media/jeronimo/BRUNO/dhry.h",
+		"/run/media/jeronimo/BRUNO/whetstone_log",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
+		"/mnt/truecrypt1/Dropbox/compartilhadaFrancis/bin/runSingleTest.sh",
+		"/mnt/truecrypt1/Dropbox/compartilhadaFrancis/datasets_for_tests/dataset_info.txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main2.cpp",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main.cpp",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/run2.sh",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/Makefile2",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/runSingleTest2.sh",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/runSingleTest.sh",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/build_project",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.h",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.cpp",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/qualityassessment.cpp",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/qualityassessment.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Hepatec/VolumeRendering/android_sources/ar/ImageTargets/jni/ImageTargets.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Disciplinas/Atividade_Didática/inf01202 (1)/Projeto/sources_alunos/Souces/Caio_Lunardi- Guilherme_Cunha/fase1.txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Disciplinas/Atividade_Didática/inf01202 (1)/Projeto/sources_alunos/Souces/Caio_Lunardi- Guilherme_Cunha/GAME_OVER.txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Disciplinas/Atividade_Didática/inf01202 (1)/Projeto/sources_alunos/Souces/Augusto_Delavald - Leonardo_Barlette-Leonardo_Blender/descrição.txt",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/qcar-sdk-1-0-0/samples/ImageTargets/jni/ImageTargets - Copy.cpp",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/qcar-sdk-1-0-0/samples/ImageTargets/jni/ImageTargets.cpp",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/android-ndk-r7c/samples/hello-gl2/jni/gl_code.cpp",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/qcar-android-1-5-4-beta1/samples/ImageTargets/jni/ImageTargets.cpp",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/vuforia-sdk-android-1-5-9/samples/ImageTargets/jni/ImageTargets.cpp",
+		"/run/user/1000/gvfs/sftp:host=xmohouse.redirectme.net,port=2222,user=jeronimo/mnt/Data/UsersHome/AdvancedUsers/Jeronimo/Android/vuforia-sdk-android-1-5-9_bkp/samples/ImageTargets/jni/ImageTargets.cpp",
+		"/home/jeronimo/.conkyrc",
+		"/mnt/truecrypt1/Dropbox/desktop.ini",
+		"/home/jeronimo/Dropbox/eclipse_workspace/aulaspraticas_sources/partidas.txt",
+		"/mnt/truecrypt1/Dropbox/inf01202 (1)/src/Provas2013/Prova2_questoes.cpp",
+		"/mnt/truecrypt1/Dropbox/eclipse_workspace/aulaspraticas_sources/exerciciosProva.cpp",
+		"/home/jeronimo/Dropbox/eclipse_workspace/aulaspraticas_sources/arqBinario.cpp",
+		"/mnt/truecrypt1/Dropbox/inf01202 (1)/src/Provas2013/questao4.c",
+		"/home/jeronimo/Dropbox/eclipse_workspace/aulaspraticas_sources/ponteiros1.cpp",
+		"/home/jeronimo/Dropbox/eclipse_workspace/aulaspraticas_sources/partida.bin",
+		"/mnt/truecrypt1/Dropbox/eclipse_workspace/aulaspraticas_sources/partidas.txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/systemmessages.h",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/handledata.cpp",
+		"/mnt/truecrypt1/Dropbox/eclipse_workspace/aulaspraticas_sources/arqBinario.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/imageinfo.h",
+		"/home/jeronimo/Documents/minc-2.0.18/libsrc/voxel_loop.h",
+		"/home/jeronimo/Documents/minc-2.0.18/libsrc/voxel_loop.c",
+		"/home/jeronimo/Documents/minc-2.0.18/libtool",
+		"/home/jeronimo/Documents/minc-2.0.18/README",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main2.h",
+		"/home/jeronimo/.cache/.fr-PN5Wqx/aircrack-ng-1.2-beta1/src/version.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/systemmessages.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/qualityassessment.cpp",
+		"/home/jeronimo/Dropbox/eclipse_workspace/aulaspraticas_sources/mandel.c",
+		"/home/jeronimo/.cache/.fr-2eCfGu/conky-1.9.0/data/conky.conf",
+		"/home/jeronimo/.config/sublime-text-2/Packages/User/Xmo_Make.sublime-build",
+		"/home/jeronimo/.config/sublime-text-2/Packages/C++/C++.sublime-build",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/shared/source/Texture.cpp",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/shared/include/Texture.h",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/_ORIGINAL_SimplePreIntegratedVolumeRenderer/SimplePreIntegratedVolumeRenderer/main.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/Cronograma[Jun-Ago].txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/handledata.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/handledata.h",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/runSingleTest.sh",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/imageinfo.h",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata.h",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/systemmessages.h",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main2.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main.cpp",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/SmartContour/SmartContour/ContourArray.h",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/SmartContour/SmartContour/ContourArray.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/systemmessages.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Missao_exterior/draft.txt",
+		"/home/jeronimo/Dropbox/UFRGS/Mestrado/Missao_exterior/draft.txt",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Missao_exterior/tex/ref.bib",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Missao_exterior/tex/jggrandiPEP.tex",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/PEP/tex/iiufrgs.cls",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Missao_exterior/tex/pep.def",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/PEP/tex/iidefs.sty",
+		"/home/jeronimo/Downloads/draft.txt",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/shared/include/MyGLH.h",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/SimplePreIntegratedVolumeRenderer/SimplePreIntegratedVolumeRenderer/main.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata (Jeronimo Grandi's conflicted copy 2013-06-03).cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/imageinfo (lanier's conflicted copy 2013-06-03).h",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/main2 (Jeronimo Grandi's conflicted copy 2013-06-03).cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/loaddata (Jeronimo Grandi's conflicted copy 2013-06-03).h",
+		"/run/media/jeronimo/Data/Projetos/Devel 2009/shared/include/MyMath.h",
+		"/home/jeronimo/Documents/PACKAGES.TXT",
+		"/home/jeronimo/Downloads/ex1.c",
+		"/home/jeronimo/Downloads/ex2.c",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/ponteiros1.cpp",
+		"/home/jeronimo/Downloads/moveShip.c",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/build_opencv2",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/new_main.txt",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/load_datasets_raw.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/runPartial.sh",
+		"/home/jeronimo/.cache/.fr-XD8U20/LiverSegments/vc8/SimplePreIntegratedVolumeRenderer/preIntegrationPixelShader.glsl",
+		"/home/jeronimo/.cache/.fr-u9MyZN/LiverSegments/vc8/SimplePreIntegratedVolumeRenderer/preIntegrationVertexShader.glsl",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/sem_contraste/DICOMDIR34",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/sem_contraste/DICOMDIR33",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/arterial/DICOMDIR33",
+		"/home/jeronimo/vboxbridge",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/MRI_datasets/173120/study2/serie18/mri1.nhdr",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/MRI_datasets/173120/study2/serie18/serie18.nhdr",
+		"/run/media/jeronimo/Data/Dropbox/stuff/make_learning/arrayTests/main.cpp",
+		"/run/media/jeronimo/Data/Downloads/opencv-2.4.5-cuda/PKGBUILD",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/funcoes1.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/ClubesFutebol.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/estado_civil.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/MaterialRadioativo.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/IPVA.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/imc.cpp",
+		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/MaiorNumero.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXslicePlane0.dat",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/temp_data.csv",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/resolutionXAlgorithmsRuntime.perf",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/resolutionXCPUandGPU.perf",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXslicePlane0.pg",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXalgorithms1.pg",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXresolution0.pg",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/gpu.cpp",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/run_512.sh",
+		"/home/jeronimo/Downloads/opencv-cuda-all_BKP/src/opencv-2.4.4/doc/tutorials/core/adding_images/adding_images.rst",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/E3/Devel/Apps/UDP_Python/test.py",
+		"/home/jeronimo/missfont.log",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/SemAc/latex/sbc-template.bib",
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXresolution0.dat"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"PBASE",
+			"twoInts",
+			"gpuoptimization",
+			"printf(\"*\\n\");",
+			"\n        ",
+			"\n        printf(\"*\\n\");\n",
+			"        printf(\"*\\n\");",
+			"MSE",
+			"subImgDataset1",
+			"getDatas",
+			"imgT** d = dataset.getDataset(0);",
+			"getDataset",
+			"image",
+			"+",
+			"T",
+			"GLReshape",
+			"C2GLDisplay",
+			"GLDisplay",
+			"GLIdle",
+			"GLDisplay",
+			"C2GLDisplay",
+			"glutSetWindow",
+			"windows",
+			"free",
+			"simAverage",
+			"biggerValue",
+			"subImg1",
+			"imgT",
+			"PBASE",
+			"i",
+			"splitDatasetCPU",
+			"i",
+			"INFO_VOL1",
+			"BM",
+			"unsigned char",
+			"dataset1",
+			"subImgDataset1",
+			"subImg",
+			"ii",
+			"jj",
+			"ii",
+			"ih",
+			"iw",
+			"subImgDataset1",
+			"INFO_VOL1",
+			"rank_size",
+			"infoD2",
+			"infoD1",
+			"splitDataset",
+			"mssimV",
+			"mpsnrV",
+			"imgInfoDataset2",
+			"imgInfoDataset1",
+			"_ranked",
+			":",
+			".",
+			"jogos[index]",
+			"jogos",
+			"arq",
+			"cont_ast",
+			"MAX_NC_OPEN",
+			"miicv_create",
+			"i_img2",
+			"i_img1",
+			";\n",
+			" [stack",
+			"[",
+			"stack",
+			" [stack",
+			"[",
+			"opt",
+			"argc",
+			"getVersion",
+			"argc",
+			"main",
+			"operator",
+			"img2",
+			"img1",
+			"img2",
+			"img1",
+			"img",
+			"k",
+			"SetImage",
+			"SetSubImage",
+			"3d",
+			"LoadData",
+			"LOAD_DATA",
+			"LoadData",
+			"/*",
+			"LoadData",
+			"plano",
+			"pep",
+			"LoadImage",
+			"LoadData",
+			"OnDestroy",
+			"\n	",
+			"colMatriz",
+			"10",
+			"float",
+			"maior",
+			"menor",
+			"666666",
+			"calculaSimilaridade",
+			"datasetSlices",
+			"06",
+			"32",
+			"33",
+			"43",
+			"ksize <=",
+			"ksize",
+			"32",
+			"ksize <= 32",
+			"31",
+			"311",
+			"33",
+			"25",
+			"1.5",
+			"22",
+			"11",
+			"32",
+			"11.5",
+			"21",
+			"20",
+			"11.5",
+			"111",
+			"1.5",
+			"ss",
+			"GB_S"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "logdata.h",
+					"settings":
+					{
+						"buffer_size": 448,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								448,
+								448
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "logdata.cpp",
+					"settings":
+					{
+						"buffer_size": 1021,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include \"logdata.h\"",
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "similarityassessment.h",
+					"settings":
+					{
+						"buffer_size": 1613,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								141,
+								141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "similarityassessment.cpp",
+					"settings":
+					{
+						"buffer_size": 13347,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 1190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								165,
+								165
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "main.cpp",
+					"settings":
+					{
+						"buffer_size": 1449,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								617,
+								617
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "handledata.cpp",
+					"settings":
+					{
+						"buffer_size": 998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "handledata.h",
+					"settings":
+					{
+						"buffer_size": 563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Makefile",
+					"settings":
+					{
+						"buffer_size": 808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"file": "utils.h",
+					"settings":
+					{
+						"buffer_size": 837,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								79,
+								79
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.731851435003,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 109.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 143.0,
+	"status_bar_visible": true
+}
