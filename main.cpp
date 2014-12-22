@@ -12,16 +12,18 @@ int main(int argc, char *argv[])
 	int option_index = 0;
 	OPT opt;
 
-	opt.logdata      = false;
-	opt.verbose   	 = false;
-	opt.gpuOptimized = false; 
+	opt.logdata      	= false;
+	opt.verbose   	 	= false;
+	opt.gpuOptimized 	= false;
+	opt.subDivideFactor = 1;
 
-	while ((option_index = getopt(argc,argv,"l:vg")) != -1)
+	while ((option_index = getopt(argc,argv,"l:f:vg")) != -1)
 	switch (option_index)
 	{
 		case 'l': opt.logdata = true; opt.logfilename = optarg; break;
 		case 'v': opt.verbose = true; 							break;
 		case 'g': opt.gpuOptimized = true;						break;
+		case 'f': opt.subDivideFactor = atoi(optarg);		    break;
 		default : printf("%s",usage ); return -1;				break;
 	}
 

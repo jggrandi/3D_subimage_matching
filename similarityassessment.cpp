@@ -11,23 +11,24 @@ SimilarityAssessment::~SimilarityAssessment(){}
 vector<sliceRank> SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>dataset1, Handle3DDataset <imgT>dataset2, OPT options)
 {
     //essa função existe para suportar outras métricas de similaridade no futuro. Atualmente só SSIM é suportado para 3D.
-    checkWithSubSSIM(dataset1, dataset2, options.gpuOptimized, options.verbose);
+    checkWithSubSSIM(dataset1, dataset2, options);
 
     return bestMatches;
 }
 
-void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Handle3DDataset <imgT>dataset2, bool gpu, bool verbose)
+void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Handle3DDataset <imgT>dataset2, OPT options)
 {
+    vector<Mat> cvD1, cvD2;
 
-    if(gpu) { printf("Sub image SSIM calculations in GPU is not implemented yet...\n");}
-    else    { d1  = splitDatasetCPU(dataset1); d2  = splitDatasetCPU(dataset2);}
+    if(options.gpuOptimized) { printf("Sub image SSIM calculations in GPU is not implemented yet...\n");}
+    else    { splitDatasetCPU(dataset1,cvD1); splitDatasetCPU(dataset2,cvD2);}
 
     DATAINFO imgInfoDataset1 = dataset1.getDatasetInfo(0);
     DATAINFO imgInfoDataset2 = dataset2.getDatasetInfo(0); 
 
-    int FACTOR = 2;
+    int FACTOR = options.subDivideFactor;
     int KERNEL = imgInfoDataset1.resWidth / FACTOR;
-    int INITIAL_SLICE = 30;
+    int INITIAL_SLICE = 0;
 
     int NRO_OF_SUBIMAGES = (imgInfoDataset1.resWidth*imgInfoDataset1.resHeight)/(KERNEL*KERNEL);
 
@@ -35,7 +36,7 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
     float simMax = 0;
 
     //printf("%d\n", NRO_OF_SUBIMAGES);
-    if(!gpu)
+    if(!options.gpuOptimized)
     {
         for( int id = INITIAL_SLICE; id < imgInfoDataset1.resDepth; id++) // para todas as imagens do primeiro dataset
         {
@@ -50,7 +51,7 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
             for (int i = 0; i < subImgs1.size(); i++)
                 subImgs1[i].create(KERNEL,KERNEL,CV_16UC1);
 
-            splitIntoSubImages(d1[id], subImgs1, imgInfoDataset1, KERNEL); // separa uma imagem d1[id] em sub imagens (salvas em subImgs1). KERNEL*KERNEL é a resolução total da subimagem 
+            splitIntoSubImages(cvD1[id], subImgs1, imgInfoDataset1, KERNEL); // separa uma imagem cvD1[id] em sub imagens (salvas em subImgs1). KERNEL*KERNEL é a resolução total da subimagem 
 
 
             for (int id2 = 0; id2 < imgInfoDataset2.resDepth; id2++) // para todas as imagens do segundo dataset
@@ -62,7 +63,7 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
                 vector<Mat> subImgs2;
                 for (int i = 0; i < subImgs2.size(); i++)
                     subImgs2[i].create(KERNEL,KERNEL,CV_16UC1);                
-                splitIntoSubImages(d2[id2], subImgs2, imgInfoDataset2, KERNEL); // separa uma imagem d2[id2] em sub imagens (salvas em subImgs2). KERNEL*KERNEL é a resolução total da subimagem 
+                splitIntoSubImages(cvD2[id2], subImgs2, imgInfoDataset2, KERNEL); // separa uma imagem cvD2[id2] em sub imagens (salvas em subImgs2). KERNEL*KERNEL é a resolução total da subimagem 
 
                 for (int iw = 0; iw < imgInfoDataset1.resWidth; iw+=KERNEL) //percorre imagem pixel //linha
                 {
@@ -70,9 +71,8 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
                     {
                         int nextSubImg2 = 0;
 
-                        if(!isBlackImage(subImgs2[nextSubImg2]))
+                        if(!isBlackImage(subImgs1[nextSubImg1]))
                         {
-        
                             for (int iw2 = 0; iw2 < imgInfoDataset2.resWidth; iw2+=KERNEL)
                             {
                                 for (int ih2 = 0; ih2 < imgInfoDataset2.resHeight; ih2+=KERNEL) //percorre imagem pixel //coluna
@@ -119,7 +119,7 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
             sliceAndDistance.value=simMax;
             bestMatches.push_back(sliceAndDistance);
             
-            if(verbose) printf("[%d]=[%d]-%f\n",id,simID,simMax );
+            if(options.verbose) printf("[%d]=[%d]-%f\n",id,simID,simMax );
             
             simMax = 0;
             simID = 0;
@@ -144,11 +144,10 @@ void SimilarityAssessment::splitIntoSubImages(Mat img, vector<Mat> &subImgs, DAT
 
 }
 
-vector<Mat> SimilarityAssessment::splitDatasetCPU(Handle3DDataset <imgT>dataset)
+void SimilarityAssessment::splitDatasetCPU(Handle3DDataset <imgT>dataset, vector<Mat> &cv_dataset)
 {
     
     DATAINFO imgInfo = dataset.getDatasetInfo(0);   
-    vector<Mat> datasetSlices;
     imgT** d = dataset.getDataset(0);
 
     for( int i = 0; i < imgInfo.resDepth; i++ )
@@ -159,10 +158,8 @@ vector<Mat> SimilarityAssessment::splitDatasetCPU(Handle3DDataset <imgT>dataset)
 
         //slice.convertTo(plane,CV_8UC3);
         slice.convertTo(plane,CV_16UC1);
-        datasetSlices.push_back(plane);
+        cv_dataset.push_back(plane);
     }
-    return datasetSlices;
-
 }
 
 

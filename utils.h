@@ -15,6 +15,7 @@ typedef struct options
 {
 	bool verbose;
 	bool logdata;
+    int  subDivideFactor;
     bool gpuOptimized;
 	char *logfilename;
 }OPT;
@@ -36,9 +37,10 @@ static char usage[] =
 "\n"
 "  Common options:\n"
 "\n"
-"      -g           : Calculations on GPU \n"
-"      -l <file>    : log data to a file\n"
-"      -v           : verbose mode\n"
+"      -g                 : Calculations on GPU \n"
+"      -l <file>          : log data to a file\n"
+"      -f <1,2,4,8...>    : Subdivide factor\n"
+"      -v                 : verbose mode\n"
 "\n";
 
 
