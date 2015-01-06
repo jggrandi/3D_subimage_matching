@@ -35,34 +35,30 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>dataset1, Hand
     int simID = 0;
     float simMax = 0;
 
+
     //printf("%d\n", NRO_OF_SUBIMAGES);
-    if(!options.gpuOptimized)
+    if(!options.gpuOptimized) // versao nao otimizada por gpu
     {
-        for( int id = INITIAL_SLICE; id < imgInfoDataset1.resDepth; id++) // para todas as imagens do primeiro dataset
+        for( int id = INITIAL_SLICE; id < imgInfoDataset1.resDepth*3; id++) // para todas as imagens do primeiro dataset
         {
 
-            float *simAverage = (float*)calloc(imgInfoDataset2.resDepth,sizeof(float)); // armazena a média das similaridades das subimagens da imagem
+            float *simAverage = (float*)calloc(imgInfoDataset2.resDepth*3,sizeof(float)); // armazena a média das similaridades das subimagens da imagem
             
-            float **simScores = (float**)calloc(imgInfoDataset1.resDepth,sizeof(float*)); //aloca espaço para salvar scores 
-            for (int i=0; i < imgInfoDataset1.resDepth; i++)
+            float **simScores = (float**)calloc(imgInfoDataset1.resDepth*3,sizeof(float*)); //aloca espaço para salvar scores 
+            for (int i=0; i < imgInfoDataset1.resDepth*3; i++)
                 simScores[i] = (float*)calloc(NRO_OF_SUBIMAGES, sizeof(float));
 
             vector<Mat> subImgs1;
-            for (int i = 0; i < subImgs1.size(); i++)
-                subImgs1[i].create(KERNEL,KERNEL,CV_16UC1);
-
             splitIntoSubImages(cvD1[id], subImgs1, imgInfoDataset1, KERNEL); // separa uma imagem cvD1[id] em sub imagens (salvas em subImgs1). KERNEL*KERNEL é a resolução total da subimagem 
 
-
-            for (int id2 = 0; id2 < imgInfoDataset2.resDepth; id2++) // para todas as imagens do segundo dataset
+            #pragma omp parallel for //realiza em paralelo na CPU as comparações
+            for (int id2 = 0; id2 < imgInfoDataset2.resDepth*3; id2++) // para todas as imagens do segundo dataset
             {
 
                 int simScoreiT1 = 0;
                 int nextSubImg1 = 0;
 
                 vector<Mat> subImgs2;
-                for (int i = 0; i < subImgs2.size(); i++)
-                    subImgs2[i].create(KERNEL,KERNEL,CV_16UC1);                
                 splitIntoSubImages(cvD2[id2], subImgs2, imgInfoDataset2, KERNEL); // separa uma imagem cvD2[id2] em sub imagens (salvas em subImgs2). KERNEL*KERNEL é a resolução total da subimagem 
 
                 for (int iw = 0; iw < imgInfoDataset1.resWidth; iw+=KERNEL) //percorre imagem pixel //linha
@@ -160,6 +156,33 @@ void SimilarityAssessment::splitDatasetCPU(Handle3DDataset <imgT>dataset, vector
         slice.convertTo(plane,CV_16UC1);
         cv_dataset.push_back(plane);
     }
+
+    d = dataset.changePlane('s');
+
+    for( int i = 0; i < imgInfo.resDepth; i++ )
+    {
+        
+        Mat slice(imgInfo.resHeight,imgInfo.resWidth,CV_16UC1,d[i]);
+        Mat plane;
+
+        //slice.convertTo(plane,CV_8UC3);
+        slice.convertTo(plane,CV_16UC1);
+        cv_dataset.push_back(plane);
+    }
+
+    d = dataset.changePlane('c');
+
+    for( int i = 0; i < imgInfo.resDepth; i++ )
+    {
+        
+        Mat slice(imgInfo.resHeight,imgInfo.resWidth,CV_16UC1,d[i]);
+        Mat plane;
+
+        //slice.convertTo(plane,CV_8UC3);
+        slice.convertTo(plane,CV_16UC1);
+        cv_dataset.push_back(plane);
+    }
+
 }
 
 

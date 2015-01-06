@@ -2,6 +2,7 @@
 #define SIMILARITYASSESSMENT
 
 #include <iostream>
+#include <omp.h>
 
 #include <handle3ddataset.h>
 #include <qualityassessment.h>

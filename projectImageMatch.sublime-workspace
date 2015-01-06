@@ -540,7 +540,7 @@
 			"file": "similarityassessment.h",
 			"settings":
 			{
-				"buffer_size": 961,
+				"buffer_size": 949,
 				"line_ending": "Unix"
 			}
 		},
@@ -548,7 +548,7 @@
 			"file": "similarityassessment.cpp",
 			"settings":
 			{
-				"buffer_size": 7811,
+				"buffer_size": 8203,
 				"line_ending": "Unix"
 			}
 		},
@@ -564,7 +564,7 @@
 			"file": "main.cpp",
 			"settings":
 			{
-				"buffer_size": 1384,
+				"buffer_size": 1474,
 				"line_ending": "Unix"
 			}
 		},
@@ -604,7 +604,23 @@
 			"file": "utils.h",
 			"settings":
 			{
-				"buffer_size": 761,
+				"buffer_size": 853,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_3d_comparison/src/main.cpp",
+			"settings":
+			{
+				"buffer_size": 17688,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
+			"settings":
+			{
+				"buffer_size": 13563,
 				"line_ending": "Unix"
 			}
 		}
@@ -657,6 +673,7 @@
 	},
 	"file_history":
 	[
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_subimage_matching/src/similarityassessment.cpp",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_128",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_512",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runSameDataset",
@@ -783,8 +800,7 @@
 		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/resolutionXCPUandGPU.perf",
 		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXslicePlane0.pg",
 		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXalgorithms1.pg",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXresolution0.pg",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/src/gpu.cpp"
+		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXresolution0.pg"
 	],
 	"find":
 	{
@@ -802,6 +818,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"d2",
+			"d1",
 			"bestMa",
 			"PBASE",
 			"twoInts",
@@ -927,9 +945,7 @@
 			"21",
 			"20",
 			"11.5",
-			"111",
-			"1.5",
-			"ss"
+			"111"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -947,7 +963,7 @@
 	"groups":
 	[
 		{
-			"selected": 9,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1009,15 +1025,15 @@
 					"file": "similarityassessment.h",
 					"settings":
 					{
-						"buffer_size": 961,
+						"buffer_size": 949,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								931,
-								931
+								388,
+								388
 							]
 						],
 						"settings":
@@ -1037,15 +1053,15 @@
 					"file": "similarityassessment.cpp",
 					"settings":
 					{
-						"buffer_size": 7811,
+						"buffer_size": 8203,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5708,
-								5708
+								3998,
+								3998
 							]
 						],
 						"settings":
@@ -1055,7 +1071,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1356.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1092,15 +1108,15 @@
 					"file": "main.cpp",
 					"settings":
 					{
-						"buffer_size": 1384,
+						"buffer_size": 1474,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								546,
-								546
+								785,
+								785
 							]
 						],
 						"settings":
@@ -1109,7 +1125,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 206.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1223,7 +1239,7 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1231,15 +1247,15 @@
 					"file": "utils.h",
 					"settings":
 					{
-						"buffer_size": 761,
+						"buffer_size": 853,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								60,
-								60
+								780,
+								780
 							]
 						],
 						"settings":
@@ -1250,6 +1266,60 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_3d_comparison/src/main.cpp",
+					"settings":
+					{
+						"buffer_size": 17688,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4232,
+								4232
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
+					"settings":
+					{
+						"buffer_size": 13563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5781,
+								5781
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3186.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1285,7 +1355,7 @@
 		"cols":
 		[
 			0.0,
-			0.731851435003,
+			0.574282498593,
 			1.0
 		],
 		"rows":
