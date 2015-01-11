@@ -28,7 +28,10 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>data_vol1, Han
 
     int FACTOR = options.subDivideFactor;
     int KERNEL = imgInfoDataset1.resWidth / FACTOR;
-    int INITIAL_SLICE = 0;
+    int OFFSET = KERNEL;
+    int PLANES = 9;
+    int SAMPLING = 16;
+    int INITIAL_SLICE = 16;
 
     int NRO_OF_SUBIMAGES = (imgInfoDataset1.resWidth*imgInfoDataset1.resHeight)/(KERNEL*KERNEL);
 
@@ -41,14 +44,20 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>data_vol1, Han
     //printf("%d\n", NRO_OF_SUBIMAGES);
     if(!options.gpuOptimized) // versao nao otimizada por gpu
     {
-        for( int id = INITIAL_SLICE; id < imgInfoDataset1.resDepth*3; id++) // para todas as imagens do primeiro dataset
+        for( int id = INITIAL_SLICE; id < imgInfoDataset1.resDepth; id+=16) // para todas as imagens do primeiro dataset
         {
 
-            float *simAverage = (float*)calloc(imgInfoDataset1.resDepth*3,sizeof(float)); // armazena a média das similaridades das subimagens da imagem
+            float *simAverage = (float*)calloc(imgInfoDataset1.resDepth,sizeof(float)); // armazena a média das similaridades das subimagens da imagem
             
-            float **simScores = (float**)calloc(imgInfoDataset1.resDepth*3,sizeof(float*)); //aloca espaço para salvar scores 
-            for (int i=0; i < imgInfoDataset1.resDepth*3; i++)
-                simScores[i] = (float*)calloc(NRO_OF_SUBIMAGES, sizeof(float));
+            // float **simScores = (float**)calloc(imgInfoDataset1.resDepth,sizeof(float*)); //aloca espaço para salvar scores 
+            // for (int i=0; i < imgInfoDataset1.resDepth; i++)
+            //     simScores[i] = (float*)calloc(NRO_OF_SUBIMAGES, sizeof(float));
+
+            // BM **bestMatches = (BM**)calloc(imgInfoDataset1.resWidth, sizeof(BM*));
+            // for (int i=0; i < imgInfoDataset1.resWidth; i++)
+            //     bestMatches[i] = (BM*)calloc(imgInfoDataset1.resHeight, sizeof(BM));
+
+            BM *bestMatches = new BM [imgInfoDataset1.resWidth*imgInfoDataset1.resHeight];
 
             // vector<Mat> subImgs1;
             // splitIntoSubImagesCV(cvD1[id], subImgs1, imgInfoDataset1, KERNEL); // separa uma imagem cvD1[id] em sub imagens (salvas em subImgs1). KERNEL*KERNEL é a resolução total da subimagem 
@@ -56,80 +65,221 @@ void SimilarityAssessment::checkWithSubSSIM(Handle3DDataset <imgT>data_vol1, Han
             vector<imgT*> subImgs1;
             splitIntoSubImages(raw_vol1[id], subImgs1, imgInfoDataset1, KERNEL);
 
+            //saveData( subImgs1[7], 123, iw, ih, ih, KERNEL);
+
             
-            #pragma omp parallel for //realiza em paralelo na CPU as comparações
-            for (int id2 = 0; id2 < imgInfoDataset2.resDepth*3; id2++) // para todas as imagens do segundo dataset
-            {
+        //#pragma omp parallel for //realiza em paralelo na CPU as comparações
 
-                int simScoreiT1 = 0;
-                int nextSubImg1 = 0;
+            int simScoreiT1 = 0;
+            int nextSubImg1 = 0;
+            
+            vector<imgT*> subImgVol;                
+            
 
-                vector<Mat> subImgs2;
-                splitIntoSubImages(cvD2[id2], subImgs2, imgInfoDataset2, KERNEL); // separa uma imagem cvD2[id2] em sub imagens (salvas em subImgs2). KERNEL*KERNEL é a resolução total da subimagem 
-
-                for (int iw = 0; iw < imgInfoDataset1.resWidth; iw+=KERNEL) //percorre imagem pixel //linha
+            for (int id2 = 0; id2 < imgInfoDataset2.resDepth-OFFSET+1; id2+=SAMPLING)            
+            {    
+                printme(id2);
+                for (int i = 0; i < imgInfoDataset2.resWidth-OFFSET+1; i+=SAMPLING)
                 {
-                    for (int ih = 0; ih < imgInfoDataset1.resHeight; ih+=KERNEL) //percorre imagem pixel //coluna
+                    for (int j = 0; j < imgInfoDataset2.resHeight-OFFSET+1; j+=SAMPLING)
                     {
-                        int nextSubImg2 = 0;
-
-                        if(!isBlackImage(subImgs1[nextSubImg1], KERNEL, KERNEL))
+                        for (int p = 0; p < PLANES; p++)
                         {
-                            for (int iw2 = 0; iw2 < imgInfoDataset2.resWidth; iw2+=KERNEL)
+                            imgT *subImgVolTmp = (imgT*)calloc(KERNEL*KERNEL,sizeof(imgT*));//sub imagens do volume de entrada        
+                            //memset(subImgVolTmp,0,KERNEL*KERNEL*sizeof(imgT*));
+                            buildImagePlanes(id2,i,j,imgInfoDataset2.resWidth,KERNEL,raw_vol2,p,subImgVolTmp);
+                            subImgVol.push_back(subImgVolTmp);
+                            //saveData(subImgVolTmp, 444, p, i, j, KERNEL);
+                        }
+                    }
+                }
+            }   
+            waitme();
+
+            // Mat subImg1Cv(KERNEL,KERNEL,CV_16UC1, subImgs1[0]);
+            // Mat subImg2Cv(KERNEL,KERNEL,CV_16UC1, subImgVol[0]);
+            // similarityResult = qualAssess.getMSSIM(subImg1Cv, subImg2Cv);
+            // printme(similarityResult.val[0]);     
+            // waitme();    
+            // saveData(subImgs1[0], 444, 1, 1, 1, KERNEL);
+            // saveData(subImgVol[0], 444, 2, 2, 2, KERNEL);
+            
+            printme(subImgVol.size());
+
+            for(auto img:subImgs1)
+            {
+            // for (int iw = 0; iw < imgInfoDataset1.resWidth; iw+=KERNEL) //percorre imagem pixel //linha
+            // {
+            //     for (int ih = 0; ih < imgInfoDataset1.resHeight; ih+=KERNEL) //percorre imagem pixel //coluna
+            //     {
+                    bestMatches[nextSubImg1].bmSimValue = -1111;
+                    cout << "IIIIIMMMMAAGGEEE" << endl;
+
+//                    if(!isBlackImage(subImgs1[nextSubImg1], KERNEL, KERNEL))
+                    if(!isBlackImage(img, KERNEL, KERNEL,1))
+                    {
+                        //waitme();
+                        BM bestNow;
+                        bestNow.bmSimValue = -1111;
+
+                        int nextSubImg2 = 0;
+                        vector<imgT*>::iterator it = subImgVol.begin();
+                        
+                        for (int id2 = 0; id2 < imgInfoDataset2.resDepth-OFFSET; id2+=SAMPLING) // para todas as imagens do segundo dataset
+                        //for (int id2 = 0; id2 < 1; id2+=SAMPLING) // para todas as imagens do segundo dataset
+                        {
+                            for (int iw2 = 0; iw2 < imgInfoDataset2.resWidth-OFFSET; iw2+=SAMPLING)
                             {
-                                for (int ih2 = 0; ih2 < imgInfoDataset2.resHeight; ih2+=KERNEL) //percorre imagem pixel //coluna
+                                for (int ih2 = 0; ih2 < imgInfoDataset2.resHeight-OFFSET; ih2+=SAMPLING) //percorre imagem pixel //coluna
                                 {   
-                                    if(!isBlackImage(subImgs2[nextSubImg2]))
+                                    for (int p = 0; p < PLANES; p++)
                                     {
-                                        Mat subImg1Cv(KERNEL,KERNEL,CV_16UC1,subImgs1[nextSubImg1]);
+                                        //buildImagePlanes(id2,iw2,ih2,imgInfoDataset2.resWidth,KERNEL,raw_vol2,p,subImgVol);
 
-        /*SIM CALCULATION*/             similarityResult = qualAssess.getMSSIM(subImg1Cv,subImgs2[nextSubImg2]);
+                                       // if(!isBlackImage(subImgVol[nextSubImg2],KERNEL,KERNEL))
+                                        if(!isBlackImage(*it,KERNEL,KERNEL))
+                                        {
+                                            //saveData(plane, 444, p, iw2, ih2, KERNEL);
+                                            Mat subImg1Cv(KERNEL,KERNEL,CV_16UC1, img);
+                                            Mat subImg2Cv(KERNEL,KERNEL,CV_16UC1, *it);
+            /*SIM CALCULATION*/             similarityResult = qualAssess.getMSSIM(subImg1Cv, subImg2Cv);
 
-                                        if(similarityResult.val[0] > simScores[id2][simScoreiT1])
-                                            simScores[id2][simScoreiT1] = similarityResult.val[0];
+                                            if(similarityResult.val[0] > bestNow.bmSimValue)
+                                            {
+                                                bestNow.bmSimValue = similarityResult.val[0];
+                                                //bestNow.bmColorValue = raw_vol2[id][ijn(iw,ih,imgInfoDataset2.resWidth)];
+                                                bestNow.bmPlane = p;
+                                                bestNow.bmCoord.x = id2;
+                                                bestNow.bmCoord.y = iw2;
+                                                bestNow.bmCoord.z = ih2;
+                                            }
+                                        }
+                                        it++;
+                                        nextSubImg2++;
+
                                     }
-                                    nextSubImg2++;
                                 }
                             }
-                            simScoreiT1++;    
+                            //exit(0);
+                            //simScoreiT1++;
                         }
-                        nextSubImg1++;
+                        bestMatches[nextSubImg1] = bestNow;
+                        printme(bestMatches[nextSubImg1]);
                     }
+                    else
+                        printme("blackk");
+                    nextSubImg1++;
                 }
 
                 //printf("%d\n",simScoreiT1 );
 
-                for( int ii = 0; ii < simScoreiT1; ii++)
-                {
-                    //printf("%f\n", simScores[id2][ii]);
-                    simAverage[id2] = simAverage[id2] + simScores[id2][ii];
-                }
+                // for( int ii = 0; ii < simScoreiT1; ii++)
+                // {
+                //     //printf("%f\n", simScores[id2][ii]);
+                //     simAverage[id2] = simAverage[id2] + simScores[id2][ii];
+                // }
 
-                simAverage[id2] = simAverage[id2] / simScoreiT1;
+                // simAverage[id2] = simAverage[id2] / simScoreiT1;
             
-                if (simAverage[id2] >= simMax)
-                {
-                    simMax = simAverage[id2];
-                    simID  = id2;
-                }
+                // if (simAverage[id2] >= simMax)
+                // {
+                //     simMax = simAverage[id2];
+                //     simID  = id2;
+                // }
 
                 //free(simAverage);
                // simAverage = NULL;
-            }
+            //}
 
-            sliceAndDistance.sliceNumber = id;
-            sliceAndDistance.distanceToOptimal = simID-id;
-            sliceAndDistance.value=simMax;
-            bestMatches.push_back(sliceAndDistance);
+
+
+            // sliceAndDistance.sliceNumber = id;
+            // sliceAndDistance.distanceToOptimal = simID-id;
+            // sliceAndDistance.value=simMax;
+            // bestMatches.push_back(sliceAndDistance);
             
             if(options.verbose) printf("[%d]=[%d]-%f\n",id,simID,simMax );
             
             simMax = 0;
             simID = 0;
-            free(simScores);
-            simScores = NULL;
         }
     }
+}
+
+
+void SimilarityAssessment::buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol1, int diag_type, imgT *&t)
+{
+    int iC1,jC1,jC2;
+    iC1=jC1=jC2=0;
+
+    const int DELTA = 0;
+    for(int i = 0; i < PBASE; i++)
+    {
+        for(int j = 0; j < PBASE; j++)
+        {
+            switch(diag_type)
+            {
+                case 0:
+                    iC1 = d+DELTA;
+                    jC1 = w+i;
+                    jC2 = h+j;
+                break;
+                case 1:
+                    iC1 = d+i;
+                    jC1 = w+j;
+                    jC2 = h+j;                 
+                break;
+                case 2:
+                    iC1 = d+i;
+                    jC1 = w+j;
+                    jC2 = h+(PBASE-j-1);               
+                break;
+                case 3:
+                    iC1 = d+j;
+                    jC1 = w+DELTA;
+                    jC2 = h+i;             
+                break;
+                case 4:
+                    iC1 = d+i;
+                    jC1 = w+j;
+                    jC2 = h+i;             
+                break;
+                case 5:
+                    iC1 = d+(PBASE-i-1);
+                    jC1 = w+j;
+                    jC2 = h+(PBASE-i-1);               
+                break;
+                case 6:
+                    iC1 = d+j;
+                    jC1 = w+i;
+                    jC2 = h+DELTA;             
+                break;
+                case 7:
+                    iC1 = d+i;
+                    jC1 = w+i;
+                    jC2 = h+j;             
+                break;
+                case 8:
+                    iC1 = d+(PBASE-i-1);
+                    jC1 = w+(PBASE-i-1);
+                    jC2 = h+j;             
+                break;          
+                default:
+                break;
+            }
+            // if(diag_type == 2)       
+            //     cout << iC1 << " " << jC1 << " " << jC2 << endl;
+
+            t[ijn(i,j,PBASE)] = raw_vol1[iC1][ijn(jC1,jC2,resW)];
+
+        }           
+    }
+    // if(diag_type == 2)
+    // {
+    //     saveData(t, 444, d, w, h, PBASE);
+    //     exit(0);
+    // }
+
 }
 
 
@@ -146,13 +296,10 @@ void SimilarityAssessment::splitIntoSubImages(imgT *img, vector<imgT*> &subImgs,
             imgT *savedSubImg = (imgT*)malloc(sizeof(imgT) * (KERNEL*KERNEL));
             cvMatToRaw(tempSubImage, savedSubImg);
             subImgs.push_back(savedSubImg);
-            //saveDataRaw( savedSubImg, 123, iw, ih, ih, KERNEL);
+            //saveData( savedSubImg, 123, iw, ih, ih, KERNEL);
         }
     }
 }
-
-
-
 
 
 void SimilarityAssessment::splitIntoSubImages(Mat img, vector<Mat> &subImgs, DATAINFO imgInfo, int KERNEL )
@@ -182,24 +329,6 @@ void SimilarityAssessment::splitDatasetCPU(Handle3DDataset <imgT>dataset, vector
         cv_dataset.push_back(slice);
     }
 
-    d = dataset.changePlane('s');
-
-    for( int i = 0; i < imgInfo.resDepth; i++ )
-    {
-        
-        Mat slice(imgInfo.resHeight,imgInfo.resWidth,CV_16UC1,d[i]);
-        cv_dataset.push_back(slice);
-    }
-
-    d = dataset.changePlane('c');
-
-    for( int i = 0; i < imgInfo.resDepth; i++ )
-    {
-        
-        Mat slice(imgInfo.resHeight,imgInfo.resWidth,CV_16UC1,d[i]);
-        cv_dataset.push_back(slice);
-    }
-
 }
 
 
@@ -221,8 +350,10 @@ bool SimilarityAssessment::isBlackImage(Mat image)
     return isBlack;
 }
 
-bool SimilarityAssessment::isBlackImage(imgT *image, int resW, int resH)
+bool SimilarityAssessment::isBlackImage(imgT *image, int resW, int resH, int show)
 {
+    // static int idx = 0;
+    // saveData( image, 123, resW, resH, idx++, 1);
 
     bool isBlack = false; 
     int blackImage = 0;
@@ -236,11 +367,15 @@ bool SimilarityAssessment::isBlackImage(imgT *image, int resW, int resH)
     if(blackImage >= blackLimit) isBlack = true;
     else                         isBlack = false;
 
+    
+    // if(show > 0)
+    //     printme((float)blackImage/(resW*resH));
+    
     return isBlack;
 }
 
 
-void SimilarityAssessment::saveDataCV( Mat image, int ttt, int id, int iw, int ih)
+void SimilarityAssessment::saveData( Mat image, int ttt, int id, int iw, int ih)
 {
 
     imgT *imgRaw = (imgT*)malloc(sizeof(imgT) * (image.rows*image.cols));
@@ -266,7 +401,7 @@ void SimilarityAssessment::saveDataCV( Mat image, int ttt, int id, int iw, int i
     savePixels.fileName=NULL; 
 }
 
-void SimilarityAssessment::saveDataRaw( imgT *imgRaw, int ttt, int id, int iw, int ih, int imgSize)
+void SimilarityAssessment::saveData( imgT *imgRaw, int ttt, int id, int iw, int ih, int imgSize)
 {
 
     stringstream output;
