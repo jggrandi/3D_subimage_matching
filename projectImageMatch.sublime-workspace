@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"raw",
+				"raw_vol1"
+			],
+			[
+				"ra",
+				"raw_vol1"
+			],
+			[
+				"res",
+				"resHeight"
+			],
+			[
+				"pla",
+				"planeResult"
+			],
+			[
+				"img",
+				"imgInfoDataset1"
+			],
+			[
+				"data",
+				"data_vol1"
+			],
+			[
+				"subImgV",
+				"subImgVolTmp"
+			],
+			[
+				"subI",
+				"subImgVolTmp"
+			],
+			[
+				"sub",
+				"subImgs1"
+			],
+			[
+				"imgI",
+				"imgInfo"
+			],
+			[
+				"bu",
+				"bufferVolumePlanes"
+			],
+			[
 				"sl",
 				"sliceNumber"
 			],
@@ -12,24 +56,8 @@
 				"sliceNumber"
 			],
 			[
-				"sub",
-				"subImgDataset1"
-			],
-			[
 				"save",
 				"saveDataRaw"
-			],
-			[
-				"imgI",
-				"imgInfoDataset2"
-			],
-			[
-				"img",
-				"imgInfoDataset2"
-			],
-			[
-				"subI",
-				"subImgDataset2"
 			],
 			[
 				"blac",
@@ -92,20 +120,12 @@
 				"tiw2"
 			],
 			[
-				"res",
-				"resWidth"
-			],
-			[
 				"similar",
 				"similarityResult"
 			],
 			[
 				"re",
 				"resHeight"
-			],
-			[
-				"data",
-				"dataset1"
 			],
 			[
 				"get",
@@ -138,10 +158,6 @@
 			[
 				"sr",
 				"sr_ranked"
-			],
-			[
-				"ra",
-				"rank_size"
 			],
 			[
 				"im",
@@ -226,10 +242,6 @@
 			[
 				"gl",
 				"golsT2"
-			],
-			[
-				"pla",
-				"placarPartida"
 			],
 			[
 				"cont",
@@ -502,18 +514,6 @@
 			[
 				"lim",
 				"limAux"
-			],
-			[
-				"n_",
-				"n_slice"
-			],
-			[
-				"sr_",
-				"sr_ranked2"
-			],
-			[
-				"f",
-				"for	For Loop"
 			]
 		]
 	},
@@ -540,7 +540,7 @@
 			"file": "similarityassessment.h",
 			"settings":
 			{
-				"buffer_size": 1274,
+				"buffer_size": 2153,
 				"line_ending": "Unix"
 			}
 		},
@@ -548,7 +548,7 @@
 			"file": "similarityassessment.cpp",
 			"settings":
 			{
-				"buffer_size": 10545,
+				"buffer_size": 13409,
 				"line_ending": "Unix"
 			}
 		},
@@ -588,7 +588,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 889,
+				"buffer_size": 903,
 				"line_ending": "Unix"
 			}
 		},
@@ -818,6 +818,35 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"i",
+			"buildImagePlanes",
+			"id",
+			"splitIntoSubImages",
+			"NRO_OF_SUBIMAGES",
+			"KERNEL",
+			"buildImagePlanes",
+			"subImgVol",
+			"simID",
+			"imgInfoDataset2",
+			"Planes",
+			"PLANES",
+			"Planes",
+			"PLANES",
+			"Planes",
+			"PLANES",
+			"SAMPLING",
+			"OFFSET",
+			"Planes",
+			"PLANES",
+			"Planes",
+			"PLANES",
+			"FACTOR",
+			"KERNEL",
+			"fParams",
+			";\n",
+			"nextSubImg1",
+			"simScoreiT1",
+			"simAverage",
 			"d2",
 			"d1",
 			"bestMa",
@@ -916,36 +945,7 @@
 			"LoadImage",
 			"LoadData",
 			"OnDestroy",
-			"\n	",
-			"colMatriz",
-			"10",
-			"float",
-			"maior",
-			"menor",
-			"666666",
-			"calculaSimilaridade",
-			"datasetSlices",
-			"06",
-			"32",
-			"33",
-			"43",
-			"ksize <=",
-			"ksize",
-			"32",
-			"ksize <= 32",
-			"31",
-			"311",
-			"33",
-			"25",
-			"1.5",
-			"22",
-			"11",
-			"32",
-			"11.5",
-			"21",
-			"20",
-			"11.5",
-			"111"
+			"\n	"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1025,15 +1025,15 @@
 					"file": "similarityassessment.h",
 					"settings":
 					{
-						"buffer_size": 1274,
+						"buffer_size": 2153,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								822,
+								822
 							]
 						],
 						"settings":
@@ -1043,7 +1043,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 744.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1053,15 +1053,15 @@
 					"file": "similarityassessment.cpp",
 					"settings":
 					{
-						"buffer_size": 10545,
+						"buffer_size": 13409,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6452,
-								6452
+								1375,
+								1375
 							]
 						],
 						"settings":
@@ -1071,7 +1071,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 702.0,
+						"translation.y": 291.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1189,7 +1189,7 @@
 					"file": "Makefile",
 					"settings":
 					{
-						"buffer_size": 889,
+						"buffer_size": 903,
 						"regions":
 						{
 						},
@@ -1282,8 +1282,8 @@
 						"selection":
 						[
 							[
-								4232,
-								4232
+								11827,
+								11827
 							]
 						],
 						"settings":
@@ -1292,7 +1292,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 702.0,
+						"translation.y": 6393.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1309,8 +1309,8 @@
 						"selection":
 						[
 							[
-								5781,
-								5781
+								517,
+								517
 							]
 						],
 						"settings":
@@ -1319,7 +1319,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3186.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

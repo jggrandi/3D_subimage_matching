@@ -30,8 +30,18 @@ typedef struct bestMatch
     P3i     bmCoord; 
 }BM;
 
+typedef struct  functionalParameters
+{
+    int FACTOR;
+    int KERNEL;
+    int OFFSET;
+    int PLANES;
+    int SAMPLING;
+    int INITIAL_SLICE;
+}FP;
+
 inline std::ostream &operator<<( std::ostream &out, const BM bm ) {
-return out << "(" << bm.bmSimValue << "; " << bm.bmPlane << ")" << endl;
+return out << "[" << bm.bmCoord.z << ","<< bm.bmCoord.x << "," << bm.bmCoord.y << "] (" << bm.bmSimValue << "; " << bm.bmPlane << ")" << endl;
 } 
 
 
@@ -43,15 +53,17 @@ public:
 	vector<sliceRank> checkSimilarity(Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
     void checkWithSubSSIM( Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
     void splitDatasetCPU(Handle3DDataset <imgT>dataset, vector<Mat> &cv_dataset);
-    void splitIntoSubImages(Mat img, vector<Mat> &subImgs, DATAINFO imgInfo, int KERNEL );    
-    void splitIntoSubImages(imgT *img, vector<imgT*> &subImgs, DATAINFO imgInfo, int KERNEL );        
+    void splitIntoSubImages(Mat img, vector<Mat> &subImgs, DATAINFO imgInfo);    
+    void splitIntoSubImages(imgT *img, vector<imgT*> &subImgs, DATAINFO imgInfo);        
     bool isBlackImage (Mat image);
     bool isBlackImage(imgT *image, int resW, int resH, int show = 0);
     void saveData( Mat image, int ttt,  int id, int iw, int ih);
     void saveData( imgT *imgRaw, int ttt, int id, int iw, int ih, int imgSize);
+    void saveData( imgT **volRaw, int ttt, int id, int iw, int ih, int imgSize);
     void cvMatToRaw(Mat cvImg, imgT *&rawImg);
     void rawToCvMat(imgT *rawImg, int resW, int resH, Mat &cvImg);
-    void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol1, int diag_type, imgT *&t);
+    void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol, int diag_type, imgT *&planeResult);
+    void bufferVolumePlanes(vector<imgT*> &subImgs, imgT **&raw_vol, DATAINFO imgInfo);
 
 
 private:
@@ -59,6 +71,7 @@ private:
     sliceRank sliceAndDistance;
     vector<sliceRank> bestMatches;
     QualityAssessment qualAssess;
+    FP fP;
     
 };
 
