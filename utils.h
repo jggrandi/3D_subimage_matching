@@ -4,11 +4,20 @@
 #include <opencv2/gpu/gpu.hpp> 
 #include <vector>
 
+#include <CGAL/Simple_cartesian.h>
+#include <CGAL/linear_least_squares_fitting_3.h>
 
 using namespace cv;
 
 //typedef unsigned char imgT;
 typedef unsigned short imgT;
+
+//cgal typedefs
+typedef double                      FT;
+typedef CGAL::Simple_cartesian<FT>  K;
+typedef K::Line_3                   Line;
+typedef K::Plane_3                  Plane;
+typedef K::Point_3                  Point;
 
 
 typedef struct options
@@ -20,13 +29,6 @@ typedef struct options
 	char *logfilename;
 }OPT;
 
-
-struct sliceRank
-{
-    int sliceNumber;
-    int distanceToOptimal;
-    float value;
-};
 
 
 static char usage[] =

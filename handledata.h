@@ -19,14 +19,17 @@ public:
 	~HandleData();
 	int  loadData(DATAINFO h_img1, DATAINFO h_img2, OPT h_options);
 	void similarityCheck();
-	void showData();
+	void planeFitting();
+	void volumetricSimilarityValues();
+	float getRunningTime();
 private:
 	Handle3DDataset <imgT>dataset1;
 	Handle3DDataset <imgT>dataset2;
 	SimilarityAssessment q;
 	OPT oopt;
 	LogData logData;
-	vector<sliceRank> similarityResults;
+	BM *similarityResults;
+	float simCheckRuntime;
 };
 
 

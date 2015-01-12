@@ -15,6 +15,8 @@ using namespace std;
 #define printme(e){cout << #e << "=" <<(e) << endl;}
 #define waitme(){int x; cout << "Press something to continue...\n"; cin >> x;}
 
+
+
 typedef struct point3int
 {
     int x;
@@ -40,21 +42,22 @@ typedef struct  functionalParameters
     int INITIAL_SLICE;
 }FP;
 
-inline std::ostream &operator<<( std::ostream &out, const BM bm ) {
-return out << "[" << bm.bmCoord.z << ","<< bm.bmCoord.x << "," << bm.bmCoord.y << "] (" << bm.bmSimValue << "; " << bm.bmPlane << ")" << endl;
+inline std::ostream &operator<<( std::ostream &out, const BM bm ) 
+{
+    return out << "[" << bm.bmCoord.z << ","<< bm.bmCoord.x << "," << bm.bmCoord.y << "] (" << bm.bmSimValue << "; " << bm.bmPlane << ")";
 } 
-
 
 class SimilarityAssessment
 {
 public:
 	SimilarityAssessment();
 	~SimilarityAssessment();
-	vector<sliceRank> checkSimilarity(Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
-    void checkWithSubSSIM( Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
+	void checkSimilarity(Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
+    BM*  checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, imgT **inputVol, DATAINFO infoVol, OPT options);
     void splitDatasetCPU(Handle3DDataset <imgT>dataset, vector<Mat> &cv_dataset);
     void splitIntoSubImages(Mat img, vector<Mat> &subImgs, DATAINFO imgInfo);    
-    void splitIntoSubImages(imgT *img, vector<imgT*> &subImgs, DATAINFO imgInfo);        
+    void splitIntoSubImages(imgT *img, vector<imgT*> &subImgs, DATAINFO imgInfo);
+    void bufferVolumePlanes(imgT **&raw_vol, vector<imgT*> &subImgs, DATAINFO imgInfo);      
     bool isBlackImage (Mat image);
     bool isBlackImage(imgT *image, int resW, int resH, int show = 0);
     void saveData( Mat image, int ttt,  int id, int iw, int ih);
@@ -63,13 +66,11 @@ public:
     void cvMatToRaw(Mat cvImg, imgT *&rawImg);
     void rawToCvMat(imgT *rawImg, int resW, int resH, Mat &cvImg);
     void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol, int diag_type, imgT *&planeResult);
-    void bufferVolumePlanes(vector<imgT*> &subImgs, imgT **&raw_vol, DATAINFO imgInfo);
-
+    BM* getBestMatches();
 
 private:
     Scalar similarityResult;
-    sliceRank sliceAndDistance;
-    vector<sliceRank> bestMatches;
+    BM *bestMatches;
     QualityAssessment qualAssess;
     FP fP;
     
