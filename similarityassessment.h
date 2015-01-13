@@ -67,10 +67,12 @@ public:
     void rawToCvMat(imgT *rawImg, int resW, int resH, Mat &cvImg);
     void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol, int diag_type, imgT *&planeResult);
     BM* getBestMatches();
+    DATAINFO getFittingInfo();
 
 private:
     Scalar similarityResult;
     BM *bestMatches;
+    DATAINFO imgInfoSlice;
     QualityAssessment qualAssess;
     FP fP;
     

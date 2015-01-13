@@ -28,7 +28,7 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
     imgT *imgPlane = (imgT*)calloc(imgInfoDataset1.resWidth*imgInfoDataset1.resHeight,sizeof(imgT*));
     buildImagePlanes(0,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,0,imgPlane);
 
-    DATAINFO imgInfoSlice;
+    
     imgInfoSlice.resWidth = imgInfoDataset1.resWidth;
     imgInfoSlice.resHeight = imgInfoDataset1.resHeight;
 
@@ -112,6 +112,11 @@ BM* SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, im
 BM* SimilarityAssessment::getBestMatches()
 {
     return bestMatches;
+}
+
+DATAINFO SimilarityAssessment::getFittingInfo()
+{
+    return imgInfoSlice;
 }
 
 void SimilarityAssessment::bufferVolumePlanes(imgT **&raw_vol, vector<imgT*> &subImgVol, DATAINFO imgInfo)

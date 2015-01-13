@@ -6,11 +6,14 @@
 #include <cstdlib>
 #include <cstdio>
 
+
+
 #include <handle3ddataset.h>
 
 #include "similarityassessment.h"
 #include "utils.h"
 #include "logdata.h"
+
 
 class HandleData
 {
@@ -25,10 +28,12 @@ public:
 private:
 	Handle3DDataset <imgT>dataset1;
 	Handle3DDataset <imgT>dataset2;
-	SimilarityAssessment q;
+	SimilarityAssessment simAssess;
 	OPT oopt;
 	LogData logData;
 	BM *similarityResults;
+	DATAINFO fittingInfo;
+	vector<Point> bestCoords;
 	float simCheckRuntime;
 };
 

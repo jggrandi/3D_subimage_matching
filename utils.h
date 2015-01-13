@@ -2,10 +2,11 @@
 #define UTILS
 
 #include <opencv2/gpu/gpu.hpp> 
-#include <vector>
 
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/linear_least_squares_fitting_3.h>
+
+#include <vector>
 
 using namespace cv;
 

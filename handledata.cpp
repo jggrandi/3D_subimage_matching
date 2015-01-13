@@ -25,20 +25,21 @@ void HandleData::similarityCheck()
 	if(oopt.logdata || oopt.verbose)
 	{
 		double timeCounter= (double)getTickCount();
-		q.checkSimilarity(dataset1,dataset2, oopt);
+		simAssess.checkSimilarity(dataset1,dataset2, oopt);
 		timeCounter = ((double)getTickCount() - timeCounter)/getTickFrequency();
 		simCheckRuntime = timeCounter;
 		
-		similarityResults = q.getBestMatches();
-
+		similarityResults = simAssess.getBestMatches();
+		fittingInfo = simAssess.getFittingInfo();
 
 		//logData.handleLog(oopt.logfilename, similarityResults,timeCounter);
 		
 	}
 	else
 	{
-		q.checkSimilarity(dataset1,dataset2,oopt);
-		similarityResults = q.getBestMatches();
+		simAssess.checkSimilarity(dataset1,dataset2,oopt);
+		similarityResults = simAssess.getBestMatches();
+		fittingInfo = simAssess.getFittingInfo();
 	}
 }
 
@@ -49,7 +50,15 @@ float HandleData::getRunningTime()
 
 void HandleData::planeFitting()
 {
+	Plane plane;
+	
+	for (int i = 0; i < fittingInfo.resWidth*fittingInfo.resHeight; i++)
+	{
+		Point coord(((float)similarityResults[i].bmCoord.x / (float)fittingInfo.resWidth * 2.0f) - 1.0f,((float)similarityResults[i].bmCoord.y / (float)fittingInfo.resHeight* 2.0f) - 1.0f,((float)similarityResults[i].bmCoord.z / (float)fittingInfo.resDepth * 2.0f) - 1.0f);
+		bestCoords.push_back(coord);
+	}	
 
+	linear_least_squares_fitting_3(bestCoords.begin(),bestCoords.end(),plane,CGAL::Dimension_tag<0>());
 }
 
 void HandleData::volumetricSimilarityValues()
