@@ -13,6 +13,7 @@
 #include "similarityassessment.h"
 #include "utils.h"
 #include "logdata.h"
+#include "planefitting.h"
 
 
 class HandleData
@@ -29,11 +30,11 @@ private:
 	Handle3DDataset <imgT>dataset1;
 	Handle3DDataset <imgT>dataset2;
 	SimilarityAssessment simAssess;
+	PlaneFitting planeFit;
+	DATAINFO fittingInfo;
 	OPT oopt;
 	LogData logData;
 	BM *similarityResults;
-	DATAINFO fittingInfo;
-	vector<Point> bestCoords;
 	float simCheckRuntime;
 };
 

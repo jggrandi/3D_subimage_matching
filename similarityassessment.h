@@ -12,41 +12,6 @@
 using namespace std;
 
 
-#define printme(e){cout << #e << "=" <<(e) << endl;}
-#define waitme(){int x; cout << "Press something to continue...\n"; cin >> x;}
-
-
-
-typedef struct point3int
-{
-    int x;
-    int y;
-    int z;
-}P3i;
-
-typedef struct bestMatch
-{
-    double  bmSimValue;
-    char    bmColorValue;
-    int     bmPlane;
-    P3i     bmCoord; 
-}BM;
-
-typedef struct  functionalParameters
-{
-    int FACTOR;
-    int KERNEL;
-    int OFFSET;
-    int PLANES;
-    int SAMPLING;
-    int INITIAL_SLICE;
-}FP;
-
-inline std::ostream &operator<<( std::ostream &out, const BM bm ) 
-{
-    return out << "[" << bm.bmCoord.z << ","<< bm.bmCoord.x << "," << bm.bmCoord.y << "] (" << bm.bmSimValue << "; " << bm.bmPlane << ")";
-} 
-
 class SimilarityAssessment
 {
 public:

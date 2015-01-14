@@ -5,7 +5,7 @@ COPTIMIZATION = -O3
 WARNINGOFF = -w
 PROG = ../bin/3DSubImgMatch
 
-SRC = main.cpp handledata.cpp similarityassessment.cpp logdata.cpp
+SRC = main.cpp handledata.cpp similarityassessment.cpp logdata.cpp planefitting.cpp
 
 CTHREAD = -std=c++11 -pthread
 OPENMP = -fopenmp -lgomp

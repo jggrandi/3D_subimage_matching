@@ -4,16 +4,24 @@
 		"selected_items":
 		[
 			[
+				"L",
+				"LCGAL"
+			],
+			[
+				"fi",
+				"fittingInfo"
+			],
+			[
+				"res",
+				"resWidth"
+			],
+			[
 				"raw",
 				"raw_vol1"
 			],
 			[
 				"ra",
 				"raw_vol1"
-			],
-			[
-				"res",
-				"resHeight"
 			],
 			[
 				"pla",
@@ -506,14 +514,6 @@
 			[
 				"massa",
 				"massaF"
-			],
-			[
-				"li",
-				"limS"
-			],
-			[
-				"lim",
-				"limAux"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "logdata.h",
 			"settings":
 			{
-				"buffer_size": 448,
+				"buffer_size": 460,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "logdata.cpp",
 			"settings":
 			{
-				"buffer_size": 1021,
+				"buffer_size": 1102,
 				"line_ending": "Unix",
 				"name": "#include \"logdata.h\""
 			}
@@ -540,7 +540,7 @@
 			"file": "similarityassessment.h",
 			"settings":
 			{
-				"buffer_size": 2153,
+				"buffer_size": 2327,
 				"line_ending": "Unix"
 			}
 		},
@@ -548,7 +548,23 @@
 			"file": "similarityassessment.cpp",
 			"settings":
 			{
-				"buffer_size": 13409,
+				"buffer_size": 13242,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "handledata.cpp",
+			"settings":
+			{
+				"buffer_size": 2400,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "handledata.h",
+			"settings":
+			{
+				"buffer_size": 699,
 				"line_ending": "Unix"
 			}
 		},
@@ -564,23 +580,7 @@
 			"file": "main.cpp",
 			"settings":
 			{
-				"buffer_size": 1474,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "handledata.cpp",
-			"settings":
-			{
-				"buffer_size": 998,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "handledata.h",
-			"settings":
-			{
-				"buffer_size": 563,
+				"buffer_size": 1605,
 				"line_ending": "Unix"
 			}
 		},
@@ -588,7 +588,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 903,
+				"buffer_size": 966,
 				"line_ending": "Unix"
 			}
 		},
@@ -604,7 +604,7 @@
 			"file": "utils.h",
 			"settings":
 			{
-				"buffer_size": 853,
+				"buffer_size": 1074,
 				"line_ending": "Unix"
 			}
 		},
@@ -818,6 +818,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"point",
+			"Point",
+			"bestCoords",
+			"bestMatches",
+			"get",
 			"i",
 			"buildImagePlanes",
 			"id",
@@ -940,12 +945,7 @@
 			"LoadData",
 			"/*",
 			"LoadData",
-			"plano",
-			"pep",
-			"LoadImage",
-			"LoadData",
-			"OnDestroy",
-			"\n	"
+			"plano"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -963,7 +963,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -971,15 +971,15 @@
 					"file": "logdata.h",
 					"settings":
 					{
-						"buffer_size": 448,
+						"buffer_size": 460,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								448,
-								448
+								0,
+								0
 							]
 						],
 						"settings":
@@ -997,7 +997,7 @@
 					"file": "logdata.cpp",
 					"settings":
 					{
-						"buffer_size": 1021,
+						"buffer_size": 1102,
 						"regions":
 						{
 						},
@@ -1025,15 +1025,15 @@
 					"file": "similarityassessment.h",
 					"settings":
 					{
-						"buffer_size": 2153,
+						"buffer_size": 2327,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								822,
-								822
+								427,
+								427
 							]
 						],
 						"settings":
@@ -1043,7 +1043,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 744.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1053,15 +1053,15 @@
 					"file": "similarityassessment.cpp",
 					"settings":
 					{
-						"buffer_size": 13409,
+						"buffer_size": 13242,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1375,
-								1375
+								4309,
+								4309
 							]
 						],
 						"settings":
@@ -1071,13 +1071,67 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 291.0,
+						"translation.y": 1512.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "handledata.cpp",
+					"settings":
+					{
+						"buffer_size": 2400,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1363,
+								1363
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 489.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "handledata.h",
+					"settings":
+					{
+						"buffer_size": 699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								648,
+								648
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"settings":
 					{
 						"buffer_size": 1190,
@@ -1104,19 +1158,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "main.cpp",
 					"settings":
 					{
-						"buffer_size": 1474,
+						"buffer_size": 1605,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								785,
-								785
+								1253,
+								1253
 							]
 						],
 						"settings":
@@ -1125,61 +1179,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 54.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "handledata.cpp",
-					"settings":
-					{
-						"buffer_size": 998,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								547,
-								547
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "handledata.h",
-					"settings":
-					{
-						"buffer_size": 563,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 648.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1189,15 +1189,15 @@
 					"file": "Makefile",
 					"settings":
 					{
-						"buffer_size": 903,
+						"buffer_size": 966,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								530,
+								530
 							]
 						],
 						"settings":
@@ -1239,7 +1239,7 @@
 			]
 		},
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1247,15 +1247,15 @@
 					"file": "utils.h",
 					"settings":
 					{
-						"buffer_size": 853,
+						"buffer_size": 1074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								780,
-								780
+								471,
+								471
 							]
 						],
 						"settings":
@@ -1282,8 +1282,8 @@
 						"selection":
 						[
 							[
-								11827,
-								11827
+								1031,
+								1031
 							]
 						],
 						"settings":
@@ -1292,7 +1292,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 6393.0,
+						"translation.y": 399.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1309,8 +1309,8 @@
 						"selection":
 						[
 							[
-								517,
-								517
+								552,
+								552
 							]
 						],
 						"settings":
@@ -1319,7 +1319,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 756.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
