@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"L",
-				"LCGAL"
+				"fi",
+				"filter"
 			],
 			[
-				"fi",
-				"fittingInfo"
+				"filter",
+				"filterROI1"
+			],
+			[
+				"input",
+				"inputMI2"
+			],
+			[
+				"clo",
+				"clonedImage2"
+			],
+			[
+				"L",
+				"LCGAL"
 			],
 			[
 				"res",
@@ -502,70 +514,28 @@
 			[
 				"cl",
 				"clube"
-			],
-			[
-				"colo",
-				"coloradosSalario"
-			],
-			[
-				"c",
-				"clube"
-			],
-			[
-				"massa",
-				"massaF"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "logdata.h",
+			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/MutualInformationImageToImageFilter.cxx",
 			"settings":
 			{
-				"buffer_size": 460,
+				"buffer_size": 21486,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "logdata.cpp",
+			"contents": "#if defined(_MSC_VER)\n//Warning about: identifier was truncated to '255' characters in the debug information (MVC6.0 Debug)\n#pragma warning( disable : 4786 )\n#endif\n\n// General includes\n#include <iostream>\n\n// ITK includes\n#include \"itkNumericTraits.h\"\n#include \"itkImage.h\"\n#include \"itkImageFileReader.h\"\n#include \"itkImageFileWriter.h\"\n#include \"itkObliqueSectionImageFilter.h\"\n#include \"itkLookAtTransformInitializer.h\"\n#include \"itkResampleImageFilter.h\"\n#include \"itkRigid3DTransform.h\"\n\nint main(int argc, char* argv[])\n{\n	try\n	{\n		// Typedefs\n		const int Dimension = 3;\n		typedef float PixelType;\n		typedef itk::Image< PixelType, Dimension >  ImageType;\n 		typedef itk::ImageFileReader< ImageType > ReaderType;\n 		typedef itk::ImageFileWriter< ImageType > WriterType;\n		typedef itk::Rigid3DTransform< double > TransformType;\n		typedef itk::LookAtTransformInitializer< TransformType, ImageType >\n			TransformInitalizerType;\n		typedef itk::ResampleImageFilter< ImageType, ImageType >\n			ResampleFilterType;\n\n		// Get arguments\n		int arg = 1;\n		char* OutputFilename = argv[arg++];\n		char* InputFilename = argv[arg++];\n		double center0 = atof( argv[arg++] );\n		double center1 = atof( argv[arg++] );\n		double center2 = atof( argv[arg++] );\n		double direction0 = atof( argv[arg++] );\n		double direction1 = atof( argv[arg++] );\n		double direction2 = atof( argv[arg++] );\n		double up0 = atof( argv[arg++] );\n		double up1 = atof( argv[arg++] );\n		double up2 = atof( argv[arg++] );\n\n		// Read input\n		ReaderType::Pointer reader = ReaderType::New();\n		reader->SetFileName( InputFilename );\n		reader->Update( );\n		ImageType::Pointer input = reader->GetOutput();\n\n		// Create transform\n		TransformType::Pointer transform = TransformType::New();\n\n		// Setup output parameters\n		ImageType::SizeType size;\n		size = input->GetLargestPossibleRegion().GetSize();\n		size[0] = 80;\n		size[1] = 80;\n		size[2] = 1;\n		ImageType::SpacingType spacing;\n		spacing = input->GetSpacing();\n\n		// Create transform initializer\n		TransformInitalizerType::PointType center;\n		center[0] = center0; center[1] = center1; center[2] = center2;\n		TransformInitalizerType::VectorType direction;\n		direction[0] = direction0; direction[1] = direction1; direction[2] = direction2;\n		TransformInitalizerType::VectorType up;\n		up[0] = up0; up[1] = up1; up[2] = up2;\n		TransformInitalizerType::Pointer init = TransformInitalizerType::New();\n		init->SetImage( input );\n		init->SetTransform( transform );\n		init->SetPlane( center, direction, up, size );\n		init->InitializeTransform();\n\n		// Create resample filter\n		ResampleFilterType::Pointer filterResample = ResampleFilterType::New();\n		filterResample->SetInput( reader->GetOutput() );\n		filterResample->SetTransform( transform );\n		filterResample->SetSize( size );\n		filterResample->SetOutputSpacing( spacing );\n		filterResample->Update( );\n\n        // Write output\n 		WriterType::Pointer writer = WriterType::New();\n 		writer->SetFileName( OutputFilename );\n 		writer->SetInput( filterResample->GetOutput() );\n 		writer->Update();\n	}\n	catch (itk::ExceptionObject & err)\n    { \n		std::cerr << \"ExceptionObject caught !\" << std::endl; \n		std::cerr << err << std::endl; \n		return EXIT_FAILURE;\n    } \n\n	//Return\n	return EXIT_SUCCESS;\n}\n",
+			"file": "/home/jeronimo/.cache/.fr-eKaiTh/Source/main.cxx",
+			"file_size": 3348,
+			"file_write_time": 1184844454000000,
 			"settings":
 			{
-				"buffer_size": 1102,
-				"line_ending": "Unix",
-				"name": "#include \"logdata.h\""
-			}
-		},
-		{
-			"file": "similarityassessment.h",
-			"settings":
-			{
-				"buffer_size": 2327,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "similarityassessment.cpp",
-			"settings":
-			{
-				"buffer_size": 13242,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "handledata.cpp",
-			"settings":
-			{
-				"buffer_size": 2400,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "handledata.h",
-			"settings":
-			{
-				"buffer_size": 699,
-				"line_ending": "Unix"
+				"buffer_size": 3245,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -577,50 +547,10 @@
 			}
 		},
 		{
-			"file": "main.cpp",
+			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/build/batch.sh",
 			"settings":
 			{
-				"buffer_size": 1605,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Makefile",
-			"settings":
-			{
-				"buffer_size": 966,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_512",
-			"settings":
-			{
-				"buffer_size": 190,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "utils.h",
-			"settings":
-			{
-				"buffer_size": 1074,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_3d_comparison/src/main.cpp",
-			"settings":
-			{
-				"buffer_size": 17688,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
-			"settings":
-			{
-				"buffer_size": 13563,
+				"buffer_size": 375,
 				"line_ending": "Unix"
 			}
 		}
@@ -673,9 +603,24 @@
 	},
 	"file_history":
 	[
+		"/home/jeronimo/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/build/CMakeFiles/Progress/1",
+		"/home/jeronimo/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/build/CMakeFiles/Progress/count.txt",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_3d_comparison/src/main.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/utils.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_512",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/Makefile",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/main.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/handledata.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/handledata.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/planefitting.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/planefitting.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/similarityassessment.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/similarityassessment.h",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/logdata.cpp",
+		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/src/logdata.h",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_subimage_matching/src/similarityassessment.cpp",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_128",
-		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_512",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runSameDataset",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runSingleTest.sh",
 		"/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_subimage_matching/src/main.cpp",
@@ -785,22 +730,7 @@
 		"/home/jeronimo/vboxbridge",
 		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/MRI_datasets/173120/study2/serie18/mri1.nhdr",
 		"/run/media/jeronimo/Data/Dropbox/UFRGS/Hepatec/Datasets/MRI_datasets/173120/study2/serie18/serie18.nhdr",
-		"/run/media/jeronimo/Data/Dropbox/stuff/make_learning/arrayTests/main.cpp",
-		"/run/media/jeronimo/Data/Downloads/opencv-2.4.5-cuda/PKGBUILD",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/funcoes1.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/ClubesFutebol.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/estado_civil.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/MaterialRadioativo.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/IPVA.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/imc.cpp",
-		"/run/media/jeronimo/Data/Dropbox/eclipse_workspace/aulaspraticas_sources/MaiorNumero.cpp",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXslicePlane0.dat",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/temp_data.csv",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/resolutionXAlgorithmsRuntime.perf",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/resolutionXCPUandGPU.perf",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXslicePlane0.pg",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXalgorithms1.pg",
-		"/run/media/jeronimo/Data/Dropbox/UFRGS/Mestrado/Devel/2d_image_matching/gnuplot_data/precisionXresolution0.pg"
+		"/run/media/jeronimo/Data/Dropbox/stuff/make_learning/arrayTests/main.cpp"
 	],
 	"find":
 	{
@@ -818,6 +748,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cout",
+			"duplica",
 			"point",
 			"Point",
 			"bestCoords",
@@ -943,9 +875,7 @@
 			"LoadData",
 			"LOAD_DATA",
 			"LoadData",
-			"/*",
-			"LoadData",
-			"plano"
+			"/*"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -963,175 +893,66 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "logdata.h",
+					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/MutualInformationImageToImageFilter.cxx",
 					"settings":
 					{
-						"buffer_size": 460,
+						"buffer_size": 21486,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								8530,
+								8530
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3855.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "logdata.cpp",
+					"file": "/home/jeronimo/.cache/.fr-eKaiTh/Source/main.cxx",
 					"settings":
 					{
-						"buffer_size": 1102,
+						"buffer_size": 3245,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1657,
+								1657
 							]
 						],
 						"settings":
 						{
-							"auto_name": "#include \"logdata.h\"",
 							"syntax": "Packages/C++/C++.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 324.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "similarityassessment.h",
-					"settings":
-					{
-						"buffer_size": 2327,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								427,
-								427
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "similarityassessment.cpp",
-					"settings":
-					{
-						"buffer_size": 13242,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4309,
-								4309
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1512.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "handledata.cpp",
-					"settings":
-					{
-						"buffer_size": 2400,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1363,
-								1363
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 489.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "handledata.h",
-					"settings":
-					{
-						"buffer_size": 699,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								648,
-								648
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
 					"settings":
 					{
 						"buffer_size": 1190,
@@ -1156,66 +977,19 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
-					"buffer": 7,
-					"file": "main.cpp",
+					"buffer": 3,
+					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/MutualInformationImageToImageFilter/build/batch.sh",
 					"settings":
 					{
-						"buffer_size": 1605,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1253,
-								1253
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 648.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "Makefile",
-					"settings":
-					{
-						"buffer_size": 966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								530,
-								530
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/3d_subimage_matching/bin/runDifDataset_512",
-					"settings":
-					{
-						"buffer_size": 190,
+						"buffer_size": 375,
 						"regions":
 						{
 						},
@@ -1228,98 +1002,11 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 10,
-					"file": "utils.h",
-					"settings":
-					{
-						"buffer_size": 1074,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								471,
-								471
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/2d_3d_comparison/src/main.cpp",
-					"settings":
-					{
-						"buffer_size": 17688,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1031,
-								1031
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 399.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "/mnt/truecrypt1/Dropbox/UFRGS/Pesquisa/Devel/my_libs/Handle3DDataset/src/handle3ddataset.h",
-					"settings":
-					{
-						"buffer_size": 13563,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								552,
-								552
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 756.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1355,7 +1042,7 @@
 		"cols":
 		[
 			0.0,
-			0.574282498593,
+			0.537703995498,
 			1.0
 		],
 		"rows":
