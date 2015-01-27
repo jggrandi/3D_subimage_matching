@@ -1,6 +1,7 @@
 #ifndef SIMILARITYASSESSMENT
 #define SIMILARITYASSESSMENT
 
+
 #include <iostream>
 #include <omp.h>
 

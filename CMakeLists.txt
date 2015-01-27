@@ -21,7 +21,7 @@ endif()
 
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(CMAKE_CXX_FLAGS "-g -Wall -std=c++11")
+set(CMAKE_CXX_FLAGS "-g -Wall -w -std=c++11 -fpermissive")
 
 set(ARRAY ../../my_libs/Array)
 set(QASSESSMENT ../../my_libs/QualityAssessment/src)
@@ -33,7 +33,7 @@ set(HEADER_FILES ${ARRAY}/vector3f.h ${QASSESSMENT}/qualityassessment.h ${HANDLE
 
 add_executable (3DSubImgMatch MACOSX_BUNDLE main.cpp handledata.cpp similarityassessment.cpp logdata.cpp planefitting.cpp ${HEADER_FILES})
 
-target_link_libraries (3DSubImgMatch ${ITK_LIBRARIES} ${OpenCV_LIBS} ${CGAL_LIBRARY}   )
+target_link_libraries (3DSubImgMatch ITKReview ${ITK_LIBRARIES} ${OpenCV_LIBS} ${CGAL_LIBRARY}   )
 
 
 
