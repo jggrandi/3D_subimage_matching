@@ -25,7 +25,7 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
     //fP.SAMPLING = fP.KERNEL/2;
     fP.SAMPLING = fP.KERNEL;
     fP.INITIAL_SLICE = 0;
-    fP.RANK = 3;
+    fP.RANK = 5;
 
     imgT *imgPlane = (imgT*)calloc(imgInfoDataset1.resWidth*imgInfoDataset1.resHeight,sizeof(imgT*));
     buildImagePlanes(15,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,0,imgPlane);
@@ -43,8 +43,12 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
 {
 
     BM **bM = new BM *[infoImg.resWidth*infoImg.resHeight];
-    for(int i = 0; i < fP.RANK; i++)
+    for(int i = 0; i < infoImg.resWidth*infoImg.resHeight; i++)
         bM[i] = new BM[fP.RANK];
+
+    for (int i = 0; i < infoImg.resWidth*infoImg.resHeight; i++)
+        for (int j = 0; j < fP.RANK; j++)
+            bM[i][j].bmSimValue = -1111;
     
 
 
@@ -65,16 +69,12 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
         for(auto img:subImgs1) // para cada sub imagem da imagem de entrada
         {
             
-            for (int r = 0; r < fP.RANK; r++)
-                bM[nextSubImg1][r].bmSimValue = -1111;
-
             if(!isBlackImage(img, fP.KERNEL, fP.KERNEL,1))
             {
                 //waitme();
                 BM *bestNow = new BM[fP.RANK];
                 for (int i = 0; i < fP.RANK; i++)
                     bestNow[i].bmSimValue = -1111;
-                
                 vector<imgT*>::iterator it = subImgVol.begin();    
                 //#pragma omp parallel for
                 for (int id2 = 0; id2 < infoVol.resDepth-fP.OFFSET+1; id2++) // para todas as imagens do segundo dataset
@@ -89,14 +89,21 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                                 {
                                     //saveData(plane, 444, p, iw2, ih2, fP.KERNEL);
 
-    /*SIM CALCULATION*/             similarityResult = qualAssess.getMSSIM(img, *it, infoImg.resWidth, infoImg.resHeight);
-                                    //similarityResult = qualAssess.getMutualInformation(img, *it, infoImg.resWidth, infoImg.resHeight);
+    /*SIM CALCULATION*/             //similarityResult = qualAssess.getMSSIM(img, *it, fP.KERNEL,fP.KERNEL);
+                                    similarityResult = qualAssess.getMutualInformation(img, *it, fP.KERNEL,fP.KERNEL);
                                     //printme(bestNow);
                                     //exit(0);
+
+                                    insertCandidateIntoRank();
+
                                     for (int r = 0; r < fP.RANK; r++)
                                     {
                                         if(similarityResult.val[0] > bestNow[r].bmSimValue)
                                         {
+                                            for (int rr = fP.RANK; rr > r+1; rr--)
+                                                    bestNow[fP.RANK-1] = bestNow[fP.RANK-2];
+
+
                                             bestNow[r].bmSimValue = similarityResult.val[0];
                                             //bestNow.bmColorValue = raw_vol2[id][ijn(iw,ih,infoVol.resWidth)];
                                             bestNow[r].bmPlane = p;
@@ -112,9 +119,12 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                             }
                         }
                     }
+                    printme(id2);
                 }
                 bM[nextSubImg1] = bestNow;
-                printme(bM[nextSubImg1][0]);
+                for (int r = 0; r < fP.RANK; r++)
+                    printme(bM[nextSubImg1][r]);
+                
                 //saveData(bM[nextSubImg1].bmImg, 987, bM[nextSubImg1].bmCoord.z, bM[nextSubImg1].bmCoord.x, bM[nextSubImg1].bmCoord.y, fP.KERNEL);
             }
             else
@@ -137,6 +147,24 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
     }
     return bM;
 }
+
+void colocaNoRank(int valor)
+{
+
+    for (int r = 0; r < RANK; r++)
+    {
+        if(valor > bestNow[r])
+        {
+            for (int rr = RANK; rr > r+1; rr--)
+                    bestNow[rr-1] = bestNow[rr-2];
+
+            bestNow[r] = valor;
+            break;
+        }
+    }
+}
+
+
 
 BM** SimilarityAssessment::getBestMatches()
 {
@@ -245,7 +273,7 @@ bool SimilarityAssessment::isBlackImage(imgT *image, int resW, int resH, int sho
 
     bool isBlack = false; 
     int blackImage = 0;
-    int blackLimit =  (resW*resH)*0.65;
+    int blackLimit =  (resW*resH)*0.85;
 
     for (int i = 0; i < resW; i++)
         for (int j = 0; j < resH; j++)
