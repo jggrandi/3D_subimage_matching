@@ -23,7 +23,7 @@ public:
 	~HandleData();
 	int  loadData(DATAINFO h_img1, DATAINFO h_img2, OPT h_options);
 	void similarityCheck();
-	void planeFitting();
+	//void planeFitting();
 	void volumetricSimilarityValues();
 	float getRunningTime();
 private:
@@ -34,7 +34,7 @@ private:
 	DATAINFO fittingInfo;
 	OPT oopt;
 	LogData logData;
-	BM *similarityResults;
+	BM **similarityResults;
 	float simCheckRuntime;
 };
 

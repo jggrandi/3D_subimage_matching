@@ -16,7 +16,7 @@ class PlaneFitting
 public:
 	PlaneFitting();
 	~PlaneFitting();
-	void loadPoints(BM *similarityResults, DATAINFO fittingInfo);
+	//void loadPoints(BM *similarityResults, DATAINFO fittingInfo);
 	void planeFittingCalculations();
 	Plane getPlaneFitted();
 private:

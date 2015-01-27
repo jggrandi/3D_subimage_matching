@@ -30,7 +30,7 @@ void HandleData::similarityCheck()
 		simCheckRuntime = timeCounter;
 		
 		similarityResults = simAssess.getBestMatches();
-		fittingInfo = simAssess.getFittingInfo();
+		//fittingInfo = simAssess.getFittingInfo();
 
 		//logData.handleLog(oopt.logfilename, similarityResults,timeCounter);		
 	}
@@ -38,7 +38,7 @@ void HandleData::similarityCheck()
 	{
 		simAssess.checkSimilarity(dataset1,dataset2,oopt);
 		similarityResults = simAssess.getBestMatches();
-		fittingInfo = simAssess.getFittingInfo();
+		//fittingInfo = simAssess.getFittingInfo();
 	}
 }
 
@@ -47,13 +47,13 @@ float HandleData::getRunningTime()
 	return simCheckRuntime;
 }
 
-void HandleData::planeFitting()
-{
-	planeFit.loadPoints(similarityResults,fittingInfo);
-	planeFit.planeFittingCalculations();
-	Plane p = planeFit.getPlaneFitted();
-	cout << p.a() <<" "<< p.b() <<" "<< p.c() <<" "<< p.d() <<" "<< endl;
-}
+// void HandleData::planeFitting()
+// {
+// 	planeFit.loadPoints(similarityResults,fittingInfo);
+// 	planeFit.planeFittingCalculations();
+// 	Plane p = planeFit.getPlaneFitted();
+// 	cout << p.a() <<" "<< p.b() <<" "<< p.c() <<" "<< p.d() <<" "<< endl;
+// }
 
 void HandleData::volumetricSimilarityValues()
 {

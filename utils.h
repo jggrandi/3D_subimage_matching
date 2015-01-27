@@ -51,6 +51,7 @@ typedef struct  functionalParameters
     int PLANES;
     int SAMPLING;
     int INITIAL_SLICE;
+    int RANK;
 }FP;
 
 inline std::ostream &operator<<( std::ostream &out, const BM bm ) 

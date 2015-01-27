@@ -19,7 +19,7 @@ public:
 	SimilarityAssessment();
 	~SimilarityAssessment();
 	void checkSimilarity(Handle3DDataset <imgT>data_vol1, Handle3DDataset <imgT>data_vol2, OPT options);
-    BM*  checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, imgT **inputVol, DATAINFO infoVol, OPT options);
+    BM**  checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, imgT **inputVol, DATAINFO infoVol, OPT options);
     void splitDatasetCPU(Handle3DDataset <imgT>dataset, vector<Mat> &cv_dataset);
     void splitIntoSubImages(Mat img, vector<Mat> &subImgs, DATAINFO imgInfo);    
     void splitIntoSubImages(imgT *img, vector<imgT*> &subImgs, DATAINFO imgInfo);
@@ -32,12 +32,12 @@ public:
     void cvMatToRaw(Mat cvImg, imgT *&rawImg);
     void rawToCvMat(imgT *rawImg, int resW, int resH, Mat &cvImg);
     void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol, int diag_type, imgT *&planeResult);
-    BM* getBestMatches();
+    BM** getBestMatches();
     DATAINFO getFittingInfo();
 
 private:
     Scalar similarityResult;
-    BM *bestMatches;
+    BM **bestMatches;
     DATAINFO imgInfoSlice;
     QualityAssessment qualAssess;
     FP fP;

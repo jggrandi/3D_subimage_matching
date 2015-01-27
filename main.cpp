@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
 		return -1;
 
 	handleData.similarityCheck();
-	handleData.planeFitting();
-	handleData.volumetricSimilarityValues();
+	//handleData.planeFitting();
+	//handleData.volumetricSimilarityValues();
 
 	printf("Running Time: %f\n",handleData.getRunningTime() );
 
