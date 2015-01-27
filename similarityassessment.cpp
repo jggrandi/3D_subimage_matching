@@ -22,11 +22,11 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
     fP.KERNEL = imgInfoDataset1.resWidth / fP.FACTOR;
     fP.OFFSET = fP.KERNEL;
     fP.PLANES = 9;
-    fP.SAMPLING = 32;
+    fP.SAMPLING = fP.KERNEL/2;
     fP.INITIAL_SLICE = 0;
 
     imgT *imgPlane = (imgT*)calloc(imgInfoDataset1.resWidth*imgInfoDataset1.resHeight,sizeof(imgT*));
-    buildImagePlanes(0,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,8,imgPlane);
+    buildImagePlanes(15,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,0,imgPlane);
 
     saveData(imgPlane, 111, 1, 1, 1, imgInfoDataset1.resWidth);
     
@@ -40,7 +40,7 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
 BM* SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, imgT **inputVol, DATAINFO infoVol, OPT options)
 {
 
-    BM *bM = new BM [((infoImg.resWidth/fP.SAMPLING)-1)*((infoImg.resHeight/fP.SAMPLING)-1)];
+    BM *bM = new BM [infoImg.resWidth*infoImg.resHeight];
 
     if(!options.gpuOptimized) // versao nao otimizada por gpu
     {
@@ -79,10 +79,13 @@ BM* SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, im
                                 if(!isBlackImage(*it,fP.KERNEL,fP.KERNEL))
                                 {
                                     //saveData(plane, 444, p, iw2, ih2, fP.KERNEL);
-                                    Mat subImg1Cv(fP.KERNEL,fP.KERNEL,CV_16UC1, img);
-                                    Mat subImg2Cv(fP.KERNEL,fP.KERNEL,CV_16UC1, *it);
-    /*SIM CALCULATION*/             similarityResult = qualAssess.getMSSIM(subImg1Cv, subImg2Cv);
-
+                                    // Mat subImg1Cv(fP.KERNEL,fP.KERNEL,CV_16UC1, img);
+                                    // Mat subImg2Cv(fP.KERNEL,fP.KERNEL,CV_16UC1, *it);
+    /*SIM CALCULATION*/             //similarityResult = qualAssess.getMSSIM(subImg1Cv, subImg2Cv);
+                                    //similarityResult = qualAssess.getMSSIM(img, *it, fP.KERNEL, fP.KERNEL);
+                                    similarityResult = qualAssess.getMutualInformation(img, *it, fP.KERNEL, fP.KERNEL );
+                                    //printme(bestNow);
+                                    //exit(0);
                                     if(similarityResult.val[0] > bestNow.bmSimValue)
                                     {
                                         bestNow.bmSimValue = similarityResult.val[0];
@@ -98,10 +101,11 @@ BM* SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, im
                             }
                         }
                     }
+                    printme(id2);
                 }
                 bM[nextSubImg1] = bestNow;
                 printme(bM[nextSubImg1]);
-                saveData(bM[nextSubImg1].bmImg, 987, bM[nextSubImg1].bmCoord.z, bM[nextSubImg1].bmCoord.x, bM[nextSubImg1].bmCoord.y, fP.KERNEL);
+                //saveData(bM[nextSubImg1].bmImg, 987, bM[nextSubImg1].bmCoord.z, bM[nextSubImg1].bmCoord.x, bM[nextSubImg1].bmCoord.y, fP.KERNEL);
             }
             else
                 printme("blackk");
