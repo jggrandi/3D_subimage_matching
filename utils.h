@@ -1,6 +1,7 @@
 #ifndef UTILS
 #define UTILS
 
+#include <handle3ddataset.h>
 #include <opencv2/gpu/gpu.hpp> 
 
 #include <CGAL/Simple_cartesian.h>
@@ -25,7 +26,11 @@ typedef K::Point_3                  Point3;
 #define printme(e){cout << #e << "=" <<(e) << endl;}
 #define waitme(){int x; cout << "Press something to continue...\n"; cin >> x;}
 
-
+typedef struct planeEquation
+{
+    vector3f vector;
+    float d;
+}PLANEEQ;
 
 typedef struct point3int
 {
@@ -53,6 +58,13 @@ typedef struct  functionalParameters
     int INITIAL_SLICE;
     int RANK;
 }FP;
+
+
+typedef struct listParameters
+{
+    int listSize;
+    int listRankSize;
+}LISTPARAM;
 
 inline std::ostream &operator<<( std::ostream &out, const BM bm ) 
 {

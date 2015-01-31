@@ -5,9 +5,8 @@
 #include <iostream>
 #include <omp.h>
 
-#include <handle3ddataset.h>
-#include <qualityassessment.h>
 
+#include <qualityassessment.h>
 #include "utils.h"
 
 using namespace std;
@@ -33,14 +32,19 @@ public:
     void rawToCvMat(imgT *rawImg, int resW, int resH, Mat &cvImg);
     void buildImagePlanes(int d, int w, int h, int resW, int PBASE, imgT **&raw_vol, int diag_type, imgT *&planeResult);
     BM** getBestMatches();
+    LISTPARAM getBestMatchesListSize();
     DATAINFO getFittingInfo();
+    PLANEEQ getPlaneEquation();
+    FP getFunctionalParameters();
 
 private:
     Scalar similarityResult;
     BM **bestMatches;
+    LISTPARAM bestMatchesListSizes;
     DATAINFO imgInfoSlice;
     QualityAssessment qualAssess;
     FP fP;
+    PLANEEQ input_planeEquation;
     
 };
 

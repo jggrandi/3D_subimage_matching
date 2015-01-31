@@ -15,25 +15,35 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
     DATAINFO imgInfoDataset2 = data_vol2.getDatasetInfo(0); 
 
     imgT **raw_vol1 = data_vol1.getDataset(0);
-    //imgT **raw_vol1 = data_vol1.changePlane('s');
     imgT **raw_vol2 = data_vol2.getDataset(0);
 
     fP.FACTOR = options.subDivideFactor;
     fP.KERNEL = imgInfoDataset1.resWidth / fP.FACTOR;
     fP.OFFSET = fP.KERNEL;
     fP.PLANES = 9;
-    //fP.SAMPLING = fP.KERNEL/2;
     fP.SAMPLING = fP.KERNEL;
+    //fP.SAMPLING = fP.KERNEL;
     fP.INITIAL_SLICE = 0;
-    fP.RANK = 5;
+    fP.RANK = 10;
 
-    imgT *imgPlane = (imgT*)calloc(imgInfoDataset1.resWidth*imgInfoDataset1.resHeight,sizeof(imgT*));
-    buildImagePlanes(15,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,0,imgPlane);
 
-    saveData(imgPlane, 111, 1, 1, 1, imgInfoDataset1.resWidth);
+    imgT *imgPlane = new imgT[imgInfoDataset1.resWidth*imgInfoDataset1.resHeight];
+
+
+//    buildImagePlanes(0,0,128,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,6,imgPlane);
     
+
+    float interp1= 30000/5;
+    float interp2= 30000;
+
+    data_vol1.arbitraryPlane(imgPlane, 0, 50,interp1,interp2, input_planeEquation.vector, input_planeEquation.d);
+
+    saveData(imgPlane, 111, 1, 1, 1, imgInfoDataset1.resWidth);    
+
     imgInfoSlice.resWidth = imgInfoDataset1.resWidth;
     imgInfoSlice.resHeight = imgInfoDataset1.resHeight;
+    imgInfoSlice.resDepth = imgInfoDataset1.resDepth;
+
 
     bestMatches = checkWithSubSSIM(imgPlane, imgInfoSlice, raw_vol2, imgInfoDataset2, options);
 
@@ -42,6 +52,7 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
 BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, imgT **inputVol, DATAINFO infoVol, OPT options)
 {
 
+    int bMSize = 0;
     BM **bM = new BM *[infoImg.resWidth*infoImg.resHeight];
     for(int i = 0; i < infoImg.resWidth*infoImg.resHeight; i++)
         bM[i] = new BM[fP.RANK];
@@ -62,9 +73,11 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
         vector<imgT*> subImgVol;                
         bufferVolumePlanes(inputVol, subImgVol, infoVol);
 
-        waitme();
-        
-        printme(subImgVol.size());
+        if(options.verbose)
+        { 
+            waitme();
+            printme(subImgVol.size());
+        }
 
         for(auto img:subImgs1) // para cada sub imagem da imagem de entrada
         {
@@ -94,17 +107,14 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                                     //printme(bestNow);
                                     //exit(0);
 
-                                    insertCandidateIntoRank();
-
                                     for (int r = 0; r < fP.RANK; r++)
                                     {
-                                        if(similarityResult.val[0] > bestNow[r].bmSimValue)
+                                        if((double)similarityResult.val[0] > bestNow[r].bmSimValue)
                                         {
                                             for (int rr = fP.RANK; rr > r+1; rr--)
-                                                    bestNow[fP.RANK-1] = bestNow[fP.RANK-2];
+                                                    bestNow[rr-1] = bestNow[rr-2];
 
-
-                                            bestNow[r].bmSimValue = similarityResult.val[0];
+                                            bestNow[r].bmSimValue = (double)similarityResult.val[0];
                                             //bestNow.bmColorValue = raw_vol2[id][ijn(iw,ih,infoVol.resWidth)];
                                             bestNow[r].bmPlane = p;
                                             bestNow[r].bmCoord.z = id2;
@@ -115,65 +125,66 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                                         }
                                     }
                                 }
+                                //saveData(*it, id2, iw2, ih2, p, infoVol.resWidth);
                                 it++;
                             }
+                            //waitme();
                         }
                     }
-                    printme(id2);
+                    if(options.verbose) printme(id2);
                 }
                 bM[nextSubImg1] = bestNow;
-                for (int r = 0; r < fP.RANK; r++)
-                    printme(bM[nextSubImg1][r]);
-                
-                //saveData(bM[nextSubImg1].bmImg, 987, bM[nextSubImg1].bmCoord.z, bM[nextSubImg1].bmCoord.x, bM[nextSubImg1].bmCoord.y, fP.KERNEL);
+
+                bMSize++;
+                if(options.verbose)
+                {
+                    printf("%d\n",bMSize );
+                    for (int r = 0; r < fP.RANK; r++)
+                    {
+                        printme(bM[nextSubImg1][r]);
+                        saveData(bM[nextSubImg1][r].bmImg, r, bM[nextSubImg1][r].bmCoord.z, bM[nextSubImg1][r].bmCoord.x, bM[nextSubImg1][r].bmCoord.y, fP.KERNEL);
+                    }
+                }
             }
             else
-                printme("blackk");
+            {
+                if(options.verbose) printme("blackk");
+                for (int r = 0; r < fP.RANK; r++)
+                    bM[nextSubImg1][r].bmSimValue = -1111;
+            }
             nextSubImg1++;
-        }
-
-        // imgT **simVolume = (imgT**)calloc(infoImg.resDepth,sizeof(imgT*));
-        // for (int i=0; i < infoImg.resDepth; i++)
-        //     simVolume[i] = (imgT*)calloc(infoImg.resWidth*infoImg.resHeight, sizeof(imgT));
-        
-        // for (int i = 0; i < ((infoImg.resWidth/fP.SAMPLING)-1) * ((infoImg.resWidth/fP.SAMPLING)-1); i++)
-        // {
-        //     //if(bM[i].bmPlane == 1)
-        //     printf("%d,%d,%d\n", bM[i].bmCoord.z,bM[i].bmCoord.x,bM[i].bmCoord.y);
-        //         //simVolume[bM[i].bmCoord.z][ijn(bM[i].bmCoord.x,bM[i].bmCoord.y,infoImg.resWidth)] = 65000;
-        // }
-        //saveData(simVolume, 999, 1, 1, 1, infoImg.resWidth);
-        
+        }        
     }
+    
+    bestMatchesListSizes.listSize = bMSize;
+    bestMatchesListSizes.listRankSize = fP.RANK;
+
     return bM;
 }
 
-void colocaNoRank(int valor)
+PLANEEQ SimilarityAssessment::getPlaneEquation()
 {
-
-    for (int r = 0; r < RANK; r++)
-    {
-        if(valor > bestNow[r])
-        {
-            for (int rr = RANK; rr > r+1; rr--)
-                    bestNow[rr-1] = bestNow[rr-2];
-
-            bestNow[r] = valor;
-            break;
-        }
-    }
+    return input_planeEquation;
 }
-
-
 
 BM** SimilarityAssessment::getBestMatches()
 {
     return bestMatches;
 }
 
+LISTPARAM SimilarityAssessment::getBestMatchesListSize()
+{
+    return bestMatchesListSizes;
+}
+
 DATAINFO SimilarityAssessment::getFittingInfo()
 {
     return imgInfoSlice;
+}
+
+FP SimilarityAssessment::getFunctionalParameters()
+{
+    return fP;
 }
 
 void SimilarityAssessment::bufferVolumePlanes(imgT **&raw_vol, vector<imgT*> &subImgVol, DATAINFO imgInfo)
@@ -188,9 +199,10 @@ void SimilarityAssessment::bufferVolumePlanes(imgT **&raw_vol, vector<imgT*> &su
             { 
                 for (int p = 0; p < fP.PLANES; p++)
                 {
-                    imgT *subImgVolTmp = (imgT*)calloc(fP.KERNEL*fP.KERNEL,sizeof(imgT*));//sub imagens do volume de entrada        
+                    imgT *subImgVolTmp = new imgT [fP.KERNEL*fP.KERNEL];//sub imagens do volume de entrada        
                     buildImagePlanes(id2,i,j,imgInfo.resWidth,fP.KERNEL,raw_vol,p,subImgVolTmp);
                     subImgVol.push_back(subImgVolTmp);
+                    //saveData( subImgVolTmp, id2, i, j, p, fP.KERNEL);
                 }
             }
         }
@@ -209,7 +221,7 @@ void SimilarityAssessment::splitIntoSubImages(imgT *img, vector<imgT*> &subImgs,
         {
             Mat tempSubImage(slice, Rect(iw, ih, fP.KERNEL, fP.KERNEL)); // monta subimagem
             
-            imgT *savedSubImg = (imgT*)malloc(sizeof(imgT) * (fP.KERNEL*fP.KERNEL));
+            imgT *savedSubImg = new imgT [fP.KERNEL*fP.KERNEL];
             cvMatToRaw(tempSubImage, savedSubImg);
             subImgs.push_back(savedSubImg);
             //saveData( savedSubImg, 123, iw, ih, ih, fP.KERNEL);
@@ -319,34 +331,34 @@ void SimilarityAssessment::buildImagePlanes(int d, int w, int h, int resW, int P
                     jC2 = h+(PBASE-j-1);               
                 break;
                 case 3:
-                    iC1 = d+j;
+                    jC2 = d+j;
                     jC1 = w+DELTA;
-                    jC2 = h+i;             
+                    iC1 = h+i;             
                 break;
                 case 4:
                     iC1 = d+i;
-                    jC1 = w+j;
-                    jC2 = h+i;             
+                    jC1 = w+i;
+                    jC2 = h+j;
                 break;
-                case 5:
-                    iC1 = d+(PBASE-i-1);
-                    jC1 = w+j;
-                    jC2 = h+(PBASE-i-1);               
+                case 5:             
+                    jC1 = d+i;
+                    jC2 = w+j;
+                    iC1 = h+(PBASE-i-1);               
                 break;
                 case 6:
-                    iC1 = d+j;
-                    jC1 = w+i;
+                    jC1 = d+j;
+                    iC1 = w+i;
                     jC2 = h+DELTA;             
                 break;
                 case 7:
-                    iC1 = d+i;
+                    jC2 = d+j;
                     jC1 = w+i;
-                    jC2 = h+j;             
+                    iC1 = h+j;                         
                 break;
                 case 8:
-                    iC1 = d+(PBASE-i-1);
-                    jC1 = w+(PBASE-i-1);
-                    jC2 = h+j;             
+                    jC2 = d+j;
+                    jC1 = w+i;
+                    iC1 = h+(PBASE-j-1);                
                 break;          
                 default:
                 break;
@@ -371,7 +383,7 @@ void SimilarityAssessment::buildImagePlanes(int d, int w, int h, int resW, int P
 void SimilarityAssessment::saveData( Mat image, int ttt, int id, int iw, int ih)
 {
 
-    imgT *imgRaw = (imgT*)malloc(sizeof(imgT) * (image.rows*image.cols));
+    imgT *imgRaw = new imgT[image.rows*image.cols];
     cvMatToRaw(image, imgRaw);
     
     stringstream output;
@@ -397,7 +409,7 @@ void SimilarityAssessment::saveData( Mat image, int ttt, int id, int iw, int ih)
 
 void SimilarityAssessment::saveData( imgT **volRaw, int ttt, int id, int iw, int ih, int imgSize)
 {
-    printf("B\n");
+
     stringstream output;
     output << "subimages/subVol_"<<ttt<<"x"<< id <<"x"<<iw<<"x"<<ih<< ".raw";
     string sulfix = output.str();
@@ -412,7 +424,7 @@ void SimilarityAssessment::saveData( imgT **volRaw, int ttt, int id, int iw, int
     ///*if(*/data_vol1.saveModifiedImage<imgT>(subImg1, savePixels);//) printf("Image saved (%s)!\n", savePixels.fileName);
     //printf("A\n");
     Handle3DDataset <imgT>tosave(savePixels);
-    printf("B\n");
+
     if(tosave.saveModifiedDataset(volRaw, savePixels)) printf("Image saved (%s)!\n", savePixels.fileName);
     else printf("erro!\n");
     //printf("A\n");

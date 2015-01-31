@@ -2,20 +2,34 @@
 #define LOG_DATA
 
 #include <cstdio>
+#include <sstream>
 #include "utils.h"
+#include <regex>
+
+using namespace std;
 
 class LogData
 {
 public:
 	LogData();
 	~LogData();
-	// void handleLog(char *l_fileName, vector<sliceRank> l_similarityResults, double l_runtime);
-	// bool createFile(char *l_fileName);
-	// bool saveDataIntoFile(char *l_fileName, vector<sliceRank> l_similarityResults, double l_runtime);
-	// bool closeFile(char *l_fileName);
+	void handleLog(char *l_fileName, DATAINFO l_infoDataset1, DATAINFO l_infoDataset2, BM** l_similarityResults, LISTPARAM l_simList, PLANEEQ l_inputPlane, PLANEEQ l_fittedPlane, float l_angleError, float l_distanceError, double l_runtime, FP l_functionalParameters);
+	bool createFile();
+	bool saveDataIntoFile();
+	bool closeFile();
 private:
 	char *fileName;
+	DATAINFO infoDataset1;
+	DATAINFO infoDataset2;	
 	FILE *logFile;
+	BM   **simResults;
+	LISTPARAM simList;
+	PLANEEQ inputPlane;
+	PLANEEQ fittedPlane;
+	FP functionalParameters;
+	float angleError;
+	float distanceError;
+	double runtime;
 };
 
 

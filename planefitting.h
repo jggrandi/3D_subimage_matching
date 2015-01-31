@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <handle3ddataset.h>
 #include "utils.h"
 
 using namespace std;
@@ -16,7 +15,7 @@ class PlaneFitting
 public:
 	PlaneFitting();
 	~PlaneFitting();
-	//void loadPoints(BM *similarityResults, DATAINFO fittingInfo);
+	void loadPoints(BM **similarityResults, DATAINFO fittingInfo, LISTPARAM listInfo);
 	void planeFittingCalculations();
 	Plane getPlaneFitted();
 private:

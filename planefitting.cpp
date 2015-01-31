@@ -4,20 +4,29 @@ PlaneFitting::PlaneFitting(){}
 
 PlaneFitting::~PlaneFitting(){}
 
-// void PlaneFitting::loadPoints(BM *similarityResults, DATAINFO fittingInfo)
-// {
+void PlaneFitting::loadPoints(BM **similarityResults, DATAINFO fittingInfo, LISTPARAM listInfo)
+{
+	for (int i = 0; i < listInfo.listSize; i++)
+	{
 
-// 	for (int i = 1; i < 49; i++)
-// 	{
-// 		float px = ((float)similarityResults[i].bmCoord.x / (float)fittingInfo.resWidth * 2.0f) - 1.0f;
-// 		float py = ((float)similarityResults[i].bmCoord.y / (float)fittingInfo.resHeight* 2.0f) - 1.0f;
-// 		float pz = ((float)similarityResults[i].bmCoord.z / (float)fittingInfo.resHeight * 2.0f) - 1.0f;
-		
-// 		Point3 coord(px,py,pz);
-// 		pointsToFit.push_back(coord);
-// 		cout<< coord.x() << " " << coord.y() << " "<< coord.z() << endl;
-// 	}	
-// }
+		for (int j = 0; j < listInfo.listRankSize; j++)
+		{
+			if(similarityResults[i][j].bmSimValue != -1111)
+			{
+				float px = ((float)similarityResults[i][j].bmCoord.x / (float)fittingInfo.resWidth * 2.0f) - 1.0f;
+				float py = ((float)similarityResults[i][j].bmCoord.y / (float)fittingInfo.resHeight* 2.0f) - 1.0f;
+				float pz = ((float)similarityResults[i][j].bmCoord.z / (float)fittingInfo.resHeight * 2.0f) - 1.0f;
+				
+				Point3 coord(px,py,pz);
+				pointsToFit.push_back(coord);
+				cout << similarityResults[i][j].bmCoord.x <<" " << similarityResults[i][j].bmCoord.y << " " << similarityResults[i][j].bmCoord.z <<endl;
+				cout<< coord.x() << " " << coord.y() << " "<< coord.z() << endl;			
+			}
+			else
+				cout << "Discarted" << endl;
+		}	
+	}
+}
 
 void PlaneFitting::planeFittingCalculations()
 {
