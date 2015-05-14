@@ -18,6 +18,7 @@ public:
 	void loadPoints(BM **similarityResults, DATAINFO fittingInfo, LISTPARAM listInfo);
 	void planeFittingCalculations();
 	Plane getPlaneFitted();
+	vector<Point3> getPointsToFit();
 private:
 	vector<Point3> pointsToFit;
 	Plane planeFitted;

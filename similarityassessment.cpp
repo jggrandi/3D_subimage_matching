@@ -29,16 +29,15 @@ void SimilarityAssessment::checkSimilarity(Handle3DDataset <imgT>data_vol1, Hand
 
     imgT *imgPlane = new imgT[imgInfoDataset1.resWidth*imgInfoDataset1.resHeight];
 
-
-//    buildImagePlanes(0,0,128,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,6,imgPlane);
+    //buildImagePlanes(32,0,0,imgInfoDataset1.resWidth,imgInfoDataset1.resWidth,raw_vol1,0,imgPlane);
     
 
-    float interp1= 30000/5;
+    float interp1= 30000/7;
     float interp2= 30000;
 
-    data_vol1.arbitraryPlane(imgPlane, 0, 50,interp1,interp2, input_planeEquation.vector, input_planeEquation.d);
+    data_vol1.arbitraryPlane(imgPlane, 0, 64,interp1,interp2, input_planeEquation.vector, input_planeEquation.d);
 
-    saveData(imgPlane, 111, 1, 1, 1, imgInfoDataset1.resWidth);    
+    saveData(imgPlane, 64, 1, 1, 1, imgInfoDataset1.resWidth);    
 
     imgInfoSlice.resWidth = imgInfoDataset1.resWidth;
     imgInfoSlice.resHeight = imgInfoDataset1.resHeight;
@@ -72,11 +71,11 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
         vector<imgT*> subImgVol;                
         bufferVolumePlanes(inputVol, subImgVol, infoVol);
 
-        if(options.verbose)
-        { 
-            waitme();
-            printme(subImgVol.size());
-        }
+        // if(options.verbose)
+        // { 
+        //     waitme();
+        //     printme(subImgVol.size());
+        // }
 
         for(auto img:subImgs1) // para cada sub imagem da imagem de entrada
         {
@@ -87,9 +86,10 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                 BM *bestNow = new BM[fP.RANK];
                 for (int i = 0; i < fP.RANK; i++)
                     bestNow[i].bmSimValue = -1111;
+                
                 vector<imgT*>::iterator it = subImgVol.begin();    
                 //#pragma omp parallel for
-                for (int id2 = 0; id2 < infoVol.resDepth-fP.OFFSET+1; id2++) // para todas as imagens do segundo dataset
+                for (int id2 = 0; id2 < infoVol.resDepth-fP.OFFSET+1; id2+=(fP.SAMPLING/2)) // para todas as imagens do segundo dataset
                 {             
                     for (int iw2 = 0; iw2 < infoVol.resWidth-fP.OFFSET+1; iw2+=fP.SAMPLING)
                     {
@@ -130,7 +130,7 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                             //waitme();
                         }
                     }
-                    if(options.verbose) printme(id2);
+                    //if(options.verbose) printme(id2);
                 }
                 bM[nextSubImg1] = bestNow;
 
@@ -141,13 +141,13 @@ BM** SimilarityAssessment::checkWithSubSSIM( imgT *inputImg, DATAINFO infoImg, i
                     for (int r = 0; r < fP.RANK; r++)
                     {
                         printme(bM[nextSubImg1][r]);
-                        saveData(bM[nextSubImg1][r].bmImg, r, bM[nextSubImg1][r].bmCoord.z, bM[nextSubImg1][r].bmCoord.x, bM[nextSubImg1][r].bmCoord.y, fP.KERNEL);
+                        //saveData(bM[nextSubImg1][r].bmImg, r, bM[nextSubImg1][r].bmCoord.z, bM[nextSubImg1][r].bmCoord.x, bM[nextSubImg1][r].bmCoord.y, fP.KERNEL);
                     }
                 }
             }
             else
             {
-                if(options.verbose) printme("blackk");
+                //if(options.verbose) printme("blackk");
                 for (int r = 0; r < fP.RANK; r++)
                     bM[nextSubImg1][r].bmSimValue = -1111;
             }
@@ -190,7 +190,7 @@ void SimilarityAssessment::bufferVolumePlanes(imgT **&raw_vol, vector<imgT*> &su
 {
     //for (int id2 = 0; id2 < imgInfo.resDepth-fP.OFFSET+1; id2+=fP.SAMPLING)    
 
-    for (int id2 = 0; id2 < imgInfo.resDepth-fP.OFFSET+1; id2++)        
+    for (int id2 = 0; id2 < imgInfo.resDepth-fP.OFFSET+1; id2+=(fP.SAMPLING/2))        
     {    
         for (int i = 0; i < imgInfo.resWidth-fP.OFFSET+1; i+=fP.SAMPLING)
         {
@@ -284,7 +284,7 @@ bool SimilarityAssessment::isBlackImage(imgT *image, int resW, int resH, int sho
 
     bool isBlack = false; 
     int blackImage = 0;
-    int blackLimit =  (resW*resH)*0.85;
+    int blackLimit =  (resW*resH)*0.75;
 
     for (int i = 0; i < resW; i++)
         for (int j = 0; j < resH; j++)

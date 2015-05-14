@@ -41,12 +41,15 @@ void HandleData::similarityCheck()
 		planeFitting();
 		distanceBetweenPlanes();
 		angleBetweenPlanes();
+		cout << endl;
 		printInputPlane();
 		printFittedPlane();
 		printAngleBetweenPlanes();
 		printDistanceBetweenPlanes();		
-		volumetricSimilarityValues();
-		logData.handleLog(oopt.logfilename, infoDataset1, infoDataset2, similarityResults, simList, inputPlane, fittedPlane, angleError, distanceError, timeCounter, functionalParameters);		
+		//volumetricSimilarityValues();
+
+		vector<Point3> pToFit = planeFit.getPointsToFit();
+		logData.handleLog(oopt.logfilename, infoDataset1, infoDataset2, similarityResults, simList, inputPlane, fittedPlane, angleError, distanceError, timeCounter, functionalParameters, pToFit);		
 	}
 	else
 	{
@@ -58,6 +61,7 @@ void HandleData::similarityCheck()
 		planeFitting();
 		distanceBetweenPlanes();
 		angleBetweenPlanes();
+		cout << endl;
 		printInputPlane();
 		printFittedPlane();
 		printAngleBetweenPlanes();
@@ -110,8 +114,6 @@ void HandleData::angleBetweenPlanes()
 
 void HandleData::distanceBetweenPlanes()
 {
-
-	cout <<"AAAA" << inputPlane.vector.x << " " << inputPlane.vector.y << " " << inputPlane.vector.z << " " << inputPlane.d << endl;
 
 	float p0 = -(fittedPlane.vector.z*1.0f  + fittedPlane.vector.y*1.0f + fittedPlane.d)/(fittedPlane.vector.x);
 	vector3f pl0v0(1,1,p0);

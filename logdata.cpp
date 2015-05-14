@@ -4,7 +4,7 @@ LogData::LogData(){}
 
 LogData::~LogData(){}
 
-void LogData::handleLog(char *l_fileName, DATAINFO l_infoDataset1, DATAINFO l_infoDataset2, BM** l_similarityResults, LISTPARAM l_simList, PLANEEQ l_inputPlane, PLANEEQ l_fittedPlane, float l_angleError, float l_distanceError, double l_runtime, FP l_functionalParameters)
+void LogData::handleLog(char *l_fileName, DATAINFO l_infoDataset1, DATAINFO l_infoDataset2, BM** l_similarityResults, LISTPARAM l_simList, PLANEEQ l_inputPlane, PLANEEQ l_fittedPlane, float l_angleError, float l_distanceError, double l_runtime, FP l_functionalParameters, vector<Point3> l_pTofit)
 {
 	fileName = l_fileName;
 	simResults = l_similarityResults;
@@ -17,6 +17,7 @@ void LogData::handleLog(char *l_fileName, DATAINFO l_infoDataset1, DATAINFO l_in
 	infoDataset1 = l_infoDataset1;
 	infoDataset2 = l_infoDataset2;
 	functionalParameters = l_functionalParameters;
+	pointsToFit = l_pTofit;
 
 	if(!createFile()) printf("File not created.\n");
 	if(!saveDataIntoFile()) printf("File not salved\n"); else printf("Log file saved as %s.\n",fileName);
@@ -36,7 +37,7 @@ bool LogData::createFile()
     std::regex sulfix(".raw",std::regex_constants::ECMAScript | std::regex_constants::icase);
     std::regex otherfix("/",std::regex_constants::ECMAScript | std::regex_constants::icase);
 	
-	std::string new_s = std::regex_replace(filename, prefix, "1");
+	std::string new_s = std::regex_replace(filename, prefix, "2");
 	new_s = std::regex_replace(new_s, sulfix, "_");
 	new_s = std::regex_replace(new_s, otherfix, "_");
 
@@ -64,6 +65,13 @@ bool LogData::saveDataIntoFile()
 			fprintf(logFile, "%d;%d;%d;%d;%d;%f\n", j, simResults[i][j].bmCoord.z, simResults[i][j].bmCoord.x,simResults[i][j].bmCoord.y, simResults[i][j].bmPlane, simResults[i][j].bmSimValue);	
 		}
 	}
+	fprintf(logFile, "Points to fit\n");
+	fprintf(logFile, "%d\n",pointsToFit.size() );
+	for(unsigned int j = 0; j < pointsToFit.size(); j++)
+	{
+		fprintf(logFile, "%f;%f;%f\n", pointsToFit[j].x(), pointsToFit[j].y(),pointsToFit[j].z());	
+	}
+	fprintf(logFile, "\n");
 	fprintf(logFile, "Input  Plane Eq; %f;%f;%f;%f\n",inputPlane.vector.x, inputPlane.vector.y, inputPlane.vector.z, inputPlane.d);
 	fprintf(logFile, "Fitted Plane Eq; %f;%f;%f;%f\n",fittedPlane.vector.x, fittedPlane.vector.y, fittedPlane.vector.z, fittedPlane.d);
 	fprintf(logFile, "Angle Error; %f\n",angleError);
